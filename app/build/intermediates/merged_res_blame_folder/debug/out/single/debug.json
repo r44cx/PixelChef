@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "com.pixelchef.app-merged_res-28:/layout_activity_recipe_book.xml.flat",
+        "source": "com.pixelchef.app-main-30:/layout/activity_recipe_book.xml"
+    },
+    {
+        "merged": "com.pixelchef.app-merged_res-28:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.pixelchef.app-main-30:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.pixelchef.app-merged_res-28:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.pixelchef.app-main-30:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.pixelchef.app-merged_res-28:/layout_activity_main.xml.flat",
+        "source": "com.pixelchef.app-main-30:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.pixelchef.app-merged_res-28:/layout_activity_game.xml.flat",
+        "source": "com.pixelchef.app-main-30:/layout/activity_game.xml"
+    }
+]

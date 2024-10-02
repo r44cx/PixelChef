@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.pixelchef.app-mergeDebugResources-26:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/home/dev/.gradle/caches/transforms-3/348d94deb13ce0f676bb4eb5d9bc5b7d/transformed/appcompat-1.6.1/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}
