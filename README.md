@@ -1,4 +1,4 @@
-Pixel Chef
+# Pixel Chef
 Team:
 - **bergecyr:** Berger Cyrill
 - **zimmenoe:** Zimmermann Noe
