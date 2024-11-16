@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.pixelchef.app-mergeDebugResources-26:/values-v24/values-v24.xml",
+            "outputFile": "com.pixelchef.app-mergeDebugResources-27:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/home/dev/.gradle/caches/transforms-3/348d94deb13ce0f676bb4eb5d9bc5b7d/transformed/appcompat-1.6.1/res/values-v24/values-v24.xml",
+                    "source": "C:\\Users\\CDot\\.gradle\\caches\\8.9\\transforms\\b9398e298918d45ceed86aa123815a76\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/dev/.gradle/caches/transforms-3/3417f7cef00e47a5a180107e9de5425f/transformed/material-1.9.0/res/values-v24/values-v24.xml",
+                    "source": "C:\\Users\\CDot\\.gradle\\caches\\8.9\\transforms\\ed2c42d57711ee81e4401cebcb92f2f0\\transformed\\material-1.9.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",

@@ -1,1 +1,23 @@
- 
+[
+  {
+    "id": 1,
+    "name": "Simple Salad",
+    "ingredients": ["Lettuce", "Tomato", "Cucumber"],
+    "availableIngredients": ["Lettuce", "Tomato", "Cucumber", "Carrot", "Onion"],
+    "image": "simple_salad"
+  },
+  {
+    "id": 2,
+    "name": "Margherita Pizza",
+    "ingredients": ["Pizza Dough", "Tomato Sauce", "Mozzarella", "Basil"],
+    "availableIngredients": ["Pizza Dough", "Tomato Sauce", "Mozzarella", "Basil", "Pepperoni", "Mushrooms", "Olives"],
+    "image": "margherita_pizza"
+  },
+  {
+    "id": 3,
+    "name": "Spaghetti Carbonara",
+    "ingredients": ["Spaghetti", "Eggs", "Pancetta", "Parmesan", "Black Pepper"],
+    "availableIngredients": ["Spaghetti", "Eggs", "Pancetta", "Parmesan", "Black Pepper", "Cream", "Garlic", "Onion"],
+    "image": "spaghetti_carbonara"
+  }
+]
