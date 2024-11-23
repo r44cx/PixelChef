@@ -9,7 +9,7 @@
         "correct": true
       },
       {
-        "name": "Tomato",
+        "name": "Tomato", 
         "imageResource": "ingredients_tomato",
         "correct": true
       },
@@ -89,6 +89,253 @@
         "Add sliced mozzarella",
         "Bake at 220°C for 15 minutes",
         "Add fresh basil leaves"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "name": "Chicken Stir Fry",
+    "ingredients": [
+      {
+        "name": "Chicken",
+        "imageResource": "ingredients_chicken",
+        "correct": true
+      },
+      {
+        "name": "Bell Peppers",
+        "imageResource": "ingredients_bell_peppers",
+        "correct": true
+      },
+      {
+        "name": "Soy Sauce",
+        "imageResource": "ingredients_soy_sauce",
+        "correct": true
+      },
+      {
+        "name": "Rice",
+        "imageResource": "ingredients_rice",
+        "correct": true
+      },
+      {
+        "name": "Broccoli",
+        "imageResource": "ingredients_broccoli",
+        "correct": true
+      },
+      {
+        "name": "Pasta",
+        "imageResource": "ingredients_pasta",
+        "correct": false
+      },
+      {
+        "name": "Cheese",
+        "imageResource": "ingredients_cheese",
+        "correct": false
+      }
+    ],
+    "image": "meals_meal1",
+    "recipe": {
+      "description": "A quick and flavorful Asian stir fry",
+      "preparationTime": "25 min",
+      "difficulty": "Medium",
+      "instructions": [
+        "Cook rice according to package instructions",
+        "Cut chicken into bite-sized pieces",
+        "Stir-fry chicken until golden",
+        "Add vegetables and sauce",
+        "Serve hot over rice"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "name": "Sushi Roll",
+    "ingredients": [
+      {
+        "name": "Sushi Rice",
+        "imageResource": "ingredients_sushi_rice",
+        "correct": true
+      },
+      {
+        "name": "Nori",
+        "imageResource": "ingredients_nori",
+        "correct": true
+      },
+      {
+        "name": "Salmon",
+        "imageResource": "ingredients_salmon",
+        "correct": true
+      },
+      {
+        "name": "Avocado",
+        "imageResource": "ingredients_avocado",
+        "correct": true
+      },
+      {
+        "name": "Cucumber",
+        "imageResource": "ingredients_cucumber",
+        "correct": true
+      },
+      {
+        "name": "Wasabi",
+        "imageResource": "ingredients_wasabi",
+        "correct": true
+      },
+      {
+        "name": "Tomato",
+        "imageResource": "ingredients_tomato",
+        "correct": false
+      },
+      {
+        "name": "Lettuce",
+        "imageResource": "ingredients_lettuce",
+        "correct": false
+      }
+    ],
+    "image": "meals_meal1",
+    "recipe": {
+      "description": "Classic Japanese sushi roll",
+      "preparationTime": "45 min",
+      "difficulty": "Hard",
+      "instructions": [
+        "Cook and season sushi rice",
+        "Place nori on bamboo mat",
+        "Spread rice on nori",
+        "Add fish and vegetables",
+        "Roll tightly and slice"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "name": "Beef Wellington",
+    "ingredients": [
+      {
+        "name": "Beef Tenderloin",
+        "imageResource": "ingredients_beef",
+        "correct": true
+      },
+      {
+        "name": "Puff Pastry",
+        "imageResource": "ingredients_puff_pastry",
+        "correct": true
+      },
+      {
+        "name": "Mushrooms",
+        "imageResource": "ingredients_mushrooms",
+        "correct": true
+      },
+      {
+        "name": "Prosciutto",
+        "imageResource": "ingredients_prosciutto",
+        "correct": true
+      },
+      {
+        "name": "Dijon Mustard",
+        "imageResource": "ingredients_mustard",
+        "correct": true
+      },
+      {
+        "name": "Egg Wash",
+        "imageResource": "ingredients_egg",
+        "correct": true
+      },
+      {
+        "name": "Chicken",
+        "imageResource": "ingredients_chicken",
+        "correct": false
+      },
+      {
+        "name": "Tomato Sauce",
+        "imageResource": "ingredients_tomato_sauce",
+        "correct": false
+      },
+      {
+        "name": "Cheese",
+        "imageResource": "ingredients_cheese",
+        "correct": false
+      }
+    ],
+    "image": "meals_meal1",
+    "recipe": {
+      "description": "Elegant and complex beef dish",
+      "preparationTime": "2 hours",
+      "difficulty": "Expert",
+      "instructions": [
+        "Sear the beef tenderloin",
+        "Prepare mushroom duxelles",
+        "Wrap beef in prosciutto",
+        "Encase in puff pastry",
+        "Bake until golden brown"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "name": "French Macarons",
+    "ingredients": [
+      {
+        "name": "Almond Flour",
+        "imageResource": "ingredients_almond_flour",
+        "correct": true
+      },
+      {
+        "name": "Powdered Sugar",
+        "imageResource": "ingredients_powdered_sugar",
+        "correct": true
+      },
+      {
+        "name": "Egg Whites",
+        "imageResource": "ingredients_egg_whites",
+        "correct": true
+      },
+      {
+        "name": "Granulated Sugar",
+        "imageResource": "ingredients_sugar",
+        "correct": true
+      },
+      {
+        "name": "Food Coloring",
+        "imageResource": "ingredients_food_coloring",
+        "correct": true
+      },
+      {
+        "name": "Butter",
+        "imageResource": "ingredients_butter",
+        "correct": true
+      },
+      {
+        "name": "Vanilla Extract",
+        "imageResource": "ingredients_vanilla",
+        "correct": true
+      },
+      {
+        "name": "Flour",
+        "imageResource": "ingredients_flour",
+        "correct": false
+      },
+      {
+        "name": "Yeast",
+        "imageResource": "ingredients_yeast",
+        "correct": false
+      },
+      {
+        "name": "Milk",
+        "imageResource": "ingredients_milk",
+        "correct": false
+      }
+    ],
+    "image": "meals_meal1",
+    "recipe": {
+      "description": "Delicate French almond meringue cookies",
+      "preparationTime": "3 hours",
+      "difficulty": "Master",
+      "instructions": [
+        "Sift almond flour and powdered sugar",
+        "Make French meringue",
+        "Macaronage the batter",
+        "Pipe and rest shells",
+        "Bake at precise temperature",
+        "Fill with buttercream"
       ]
     }
   }

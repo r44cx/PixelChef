@@ -239,7 +239,7 @@ fun IngredientItem(
 @Composable
 fun MessageOverlay(message: String, onDismiss: () -> Unit) {
     LaunchedEffect(message) {
-        kotlinx.coroutines.delay(2000)
+        kotlinx.coroutines.delay(500)
         onDismiss()
     }
 
