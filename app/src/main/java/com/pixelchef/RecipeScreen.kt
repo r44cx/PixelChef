@@ -41,7 +41,11 @@ fun RecipeScreen(
         contentScale = ContentScale.Crop
     )
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
         // Back button
         Button(
             onClick = onBack,
@@ -53,9 +57,9 @@ fun RecipeScreen(
 
         Text(
             "Recipe Book",
-            fontSize = 24.sp,
+            fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(vertical = 16.dp)
         )
 
         LazyColumn {

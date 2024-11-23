@@ -65,15 +65,6 @@ fun GameScreen(
         ) {
             Text("< Back", fontSize = 14.sp, color = colorResource(R.color.colorTextSecondary))
         }
-        // Debug output
-        currentLevel?.let { level ->
-            Text(
-                text = "DEBUG OUTPUT:",
-                color = Color.Red,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(vertical = 8.dp)
-            )
-        }
 
         // Recipe image
         Box(
@@ -96,7 +87,10 @@ fun GameScreen(
 
         // Recipe name and progress
         Column(
-            modifier = Modifier.padding(vertical = 16.dp)
+            modifier = Modifier
+                .padding(vertical = 16.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = currentLevel?.name ?: "",

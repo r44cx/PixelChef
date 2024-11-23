@@ -34,8 +34,7 @@ fun SettingsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(16.dp)
     ) {
         // Back button
         Button(
@@ -55,25 +54,34 @@ fun SettingsScreen(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Reset Progress Button
-        Button(
-            onClick = {
-                viewModel.resetProgress()
-            },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+        // Center the reset button and warning text
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = "Reset Game Progress",
-                fontSize = 18.sp,
-                color = Color.White
-            )
-        }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Button(
+                    onClick = {
+                        viewModel.resetProgress()
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+                ) {
+                    Text(
+                        text = "Reset Game Progress",
+                        fontSize = 18.sp,
+                        color = Color.White
+                    )
+                }
 
-        Text(
-            text = "Warning: This will reset all level progress and stars!",
-            color = Color.Red,
-            fontSize = 14.sp,
-            modifier = Modifier.padding(top = 8.dp)
-        )
+                Text(
+                    text = "Warning: This will reset all level progress and stars!",
+                    color = Color.Red,
+                    fontSize = 14.sp,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
+        }
     }
 } 
