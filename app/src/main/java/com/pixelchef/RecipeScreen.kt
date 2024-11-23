@@ -90,7 +90,7 @@ fun RecipeCard(level: Level, isCompleted: Boolean) {
             if (isCompleted) {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text("Required Ingredients:", fontWeight = FontWeight.Bold)
-                level.ingredients.filter { it.correct }.forEach { ingredient ->
+                level.ingredients.forEach { ingredient ->
                     Text("• ${ingredient.name}")
                 }
                 

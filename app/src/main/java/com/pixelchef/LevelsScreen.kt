@@ -140,7 +140,7 @@ fun LevelItem(
                     fontSize = 14.sp,
                     color = colorResource(R.color.colorTextSecondary)
                 )
-            } else if (gameState.isCompleted) {
+            } else {
                 StarsForRating(gameState.rating)
             }
         }

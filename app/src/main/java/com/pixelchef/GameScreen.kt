@@ -1,6 +1,7 @@
 package com.pixelchef
 
 import GameConstants
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,10 +32,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pixelchef.models.Ingredient
 import com.pixelchef.viewmodels.GameViewModel
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun GameScreen(
     level: Int,
     onBack: () -> Unit,
+    onNextLevel: () -> Unit,
+    onGoToRecipes: () -> Unit,
     viewModel: GameViewModel = viewModel()
 ) {
     var showMessage by remember { mutableStateOf<String?>(null) }
@@ -110,25 +114,20 @@ fun GameScreen(
         }
 
         if (isLevelComplete) {
-            Text(
-                text = "Level Complete!",
-                fontSize = 20.sp,
-                color = Color.Green,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(vertical = 8.dp)
+            LevelCompleteDialog(
+                rating = viewModel.currentRating.value,
+                onNextLevel = onNextLevel,
+                onGoToRecipes = onGoToRecipes,
+                onBackToLevels = onBack
             )
         }
 
         if (isLevelFailed) {
-            Text(
-                text = "Loooser!",
-                fontSize = 20.sp,
-                color = Color.Red,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(vertical = 8.dp)
+            LevelFailedDialog(
+                onRetry = { viewModel.loadLevel(level) },
+                onBackToLevels = onBack
             )
         }
-
 
         // Ingredients grid
         currentLevel?.let { level ->
@@ -260,6 +259,133 @@ fun MessageOverlay(message: String, onDismiss: () -> Unit) {
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
+        }
+    }
+}
+
+@Composable
+fun LevelCompleteDialog(
+    rating: Int,
+    onNextLevel: () -> Unit,
+    onGoToRecipes: () -> Unit,
+    onBackToLevels: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0x88000000)),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .background(Color.White, RoundedCornerShape(16.dp))
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Level Complete!",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Green
+            )
+            
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            // Stars display
+            Row(
+                modifier = Modifier.padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                repeat(3) { index ->
+                    Text(
+                        text = "★",
+                        fontSize = 32.sp,
+                        color = if (index < rating) 
+                            colorResource(R.color.ratingStars)
+                        else 
+                            colorResource(R.color.buttonGameBackground)
+                    )
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(24.dp))
+            
+            // Buttons
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Button(
+                    onClick = onNextLevel,
+                    colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
+                ) {
+                    Text("Next Level")
+                }
+                
+                Button(
+                    onClick = onGoToRecipes,
+                    colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
+                ) {
+                    Text("View Recipe")
+                }
+                
+                Button(
+                    onClick = onBackToLevels,
+                    colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
+                ) {
+                    Text("Back to Levels")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun LevelFailedDialog(
+    onRetry: () -> Unit,
+    onBackToLevels: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0x88000000)),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .background(Color.White, RoundedCornerShape(16.dp))
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Level Failed!",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Red
+            )
+            
+            Spacer(modifier = Modifier.height(24.dp))
+            
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Button(
+                    onClick = onRetry,
+                    colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
+                ) {
+                    Text("Try Again")
+                }
+                
+                Button(
+                    onClick = onBackToLevels,
+                    colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
+                ) {
+                    Text("Back to Levels")
+                }
+            }
         }
     }
 }

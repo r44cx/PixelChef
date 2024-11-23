@@ -75,6 +75,14 @@ fun PixelChefApp() {
             GameScreen(
                 level = level,
                 onBack = { navController.popBackStack() },
+                onNextLevel = {
+                    navController.popBackStack()
+                    navController.navigate("levelDetail/${level + 1}")
+                },
+                onGoToRecipes = {
+                    navController.popBackStack()
+                    navController.navigate("recipes")
+                },
                 viewModel = gameViewModel
             )
         }

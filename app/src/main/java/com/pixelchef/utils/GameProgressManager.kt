@@ -99,16 +99,20 @@ class GameProgressManager(private val context: Context) {
         updateGameState(nextLevelId) { state ->
             state.copy(
                 isUnlocked = true,
-                rating = 3  // Initialize with 3 stars
+                rating = 0
             )
         }
         
         // Debug output
+        println("Current game states after completion:")
+        gameStates.forEach { (id, state) ->
+            println("Level $id: completed=${state.isCompleted}, unlocked=${state.isUnlocked}, rating=${state.rating}")
+        }
     }
 
     fun clearProgress() {
         gameStates.clear()
-        gameStates[1] = GameState(levelId = 1, isUnlocked = true, rating = 3)
+        gameStates[1] = GameState(levelId = 1, isUnlocked = true, rating = 0)
         saveGameStates()
     }
 } 

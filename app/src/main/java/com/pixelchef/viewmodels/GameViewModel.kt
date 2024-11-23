@@ -1,5 +1,6 @@
 package com.pixelchef.viewmodels
 
+import GameConstants
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -21,6 +22,9 @@ import com.pixelchef.models.GameState
 class GameViewModel : ViewModel() {
     private val _currentLevel = MutableStateFlow<Level?>(null)
     val currentLevel: StateFlow<Level?> = _currentLevel
+
+    private val _currentRating = MutableStateFlow(GameConstants.MAX_RATING)
+    var currentRating: StateFlow<Int> = _currentRating
 
     private val _correctlySelectedIngredients = MutableStateFlow<List<Ingredient>>(emptyList())
 
@@ -109,7 +113,7 @@ class GameViewModel : ViewModel() {
                 level.ingredients = level.ingredients.shuffled()
                 if (!gameProgressManager.getGameState(levelId).isCompleted) {
                     gameProgressManager.updateGameState(levelId) { state ->
-                        state.copy(rating = 3)
+                        state.copy(rating = 0)
                     }
                 }
             }
@@ -147,7 +151,7 @@ class GameViewModel : ViewModel() {
                 // Complete the level and unlock next level
                 gameProgressManager.completeLevel(
                     levelId = currentLevelValue.id,
-                    rating = currentGameState.rating
+                    rating = currentRating.value.coerceAtLeast(currentGameState.rating)
                 )
                 
                 // Debug output
@@ -157,17 +161,8 @@ class GameViewModel : ViewModel() {
             return true
         } else {
             // Wrong ingredient selected
-            val newRating = (currentGameState.rating - 1).coerceAtLeast(0)
+            _currentRating.value = (_currentRating.value - 1).coerceAtLeast(0)
 
-            // Update game state with new rating
-            gameProgressManager.updateGameState(currentLevelValue.id) { state ->
-                state.copy(rating = newRating)
-            }
-
-            // If rating reaches 0, fail the level but don't unlock next level
-            if (newRating == 0) {
-                _isLevelComplete.value = true
-            }
             _wronglySelectedIngredients.value += ingredient
 
             // Check if level is complete after adding ingredient
