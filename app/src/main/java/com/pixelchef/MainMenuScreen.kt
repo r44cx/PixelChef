@@ -52,7 +52,7 @@ fun MainMenuScreen(onNavigate: (String) -> Unit) {
             modifier = Modifier.height(250.dp),
             verticalArrangement = Arrangement.spacedBy(15.dp)
         ) {
-            MainButton("Quick Play", "quickPlay", onNavigate)
+            MainButton("Play", "play", onNavigate)
             MainButton("Levels", "levels", onNavigate)
             MainButton("Recipes", "recipes", onNavigate)
             MainButton("Settings", "settings", onNavigate)

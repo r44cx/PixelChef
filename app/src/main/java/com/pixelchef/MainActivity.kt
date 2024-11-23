@@ -40,8 +40,15 @@ fun PixelChefApp() {
     NavHost(navController, startDestination = "mainMenu") {
         composable("mainMenu") {
             MainMenuScreen { route -> 
-                println("Navigating to route: $route")  // Debug log
-                navController.navigate(route)
+                when (route) {
+                    "play" -> {
+                        // Get the next uncompleted level and navigate to it
+                        val nextLevel = gameViewModel.getNextUncompletedLevel()
+                        println("Play: Navigating to level $nextLevel")  // Debug log
+                        navController.navigate("levelDetail/$nextLevel")
+                    }
+                    else -> navController.navigate(route)
+                }
             }
         }
         composable("levels") {
