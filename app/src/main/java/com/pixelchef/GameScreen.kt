@@ -1,5 +1,6 @@
 package com.pixelchef
 
+import GameConstants
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -45,6 +46,7 @@ fun GameScreen(
 
     val currentLevel by viewModel.currentLevel.collectAsState()
     val isLevelComplete by viewModel.isLevelComplete.collectAsState()
+    val isLevelFailed by viewModel.isLevelFailed.collectAsState()
 
     Image(
         painter = painterResource(id = R.drawable.gradient),
@@ -106,14 +108,8 @@ fun GameScreen(
             
             // Progress indicator
             Text(
-                text = "Correct: ${viewModel.getSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()} ",
-                fontSize = 16.sp,
-                color = Color.Gray
-            )
-
-            // Progress indicator
-            Text(
-                text = "Failure: ${viewModel.getSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()}",
+                text = "Correct: ${viewModel.getCorrectSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()} " +
+                        "Failure: ${viewModel.getWrongSelectedIngredientsCount()}/${GameConstants.MAX_WRONG_INGREDIENTS}",
                 fontSize = 16.sp,
                 color = Color.Gray
             )
@@ -128,6 +124,17 @@ fun GameScreen(
                 modifier = Modifier.padding(vertical = 8.dp)
             )
         }
+
+        if (isLevelFailed) {
+            Text(
+                text = "Loooser!",
+                fontSize = 20.sp,
+                color = Color.Red,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(vertical = 8.dp)
+            )
+        }
+
 
         // Ingredients grid
         currentLevel?.let { level ->
@@ -149,7 +156,7 @@ fun GameScreen(
                         IngredientItem(
                             ingredient = ingredient,
                             onClick = {
-                                if (!isLevelComplete) {
+                                if (!isLevelComplete && !isLevelFailed) {
                                     val success = viewModel.selectIngredient(ingredient)
                                     showMessage = if (success) "Correct!" else "Try again!"
                                 }
