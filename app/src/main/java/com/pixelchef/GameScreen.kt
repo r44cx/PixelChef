@@ -41,7 +41,7 @@ fun GameScreen(
     onGoToRecipes: () -> Unit,
     viewModel: GameViewModel = viewModel()
 ) {
-    var showMessage by remember { mutableStateOf<String?>(null) }
+    var showMessage by remember { mutableStateOf<Boolean?>(null) }
     
     LaunchedEffect(level) {
         println("GameScreen: Loading level $level")
@@ -58,6 +58,7 @@ fun GameScreen(
         modifier = Modifier.fillMaxSize(),
         contentScale = ContentScale.Crop
     )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -113,22 +114,6 @@ fun GameScreen(
             )
         }
 
-        if (isLevelComplete) {
-            LevelCompleteDialog(
-                rating = viewModel.currentRating.value,
-                onNextLevel = onNextLevel,
-                onGoToRecipes = onGoToRecipes,
-                onBackToLevels = onBack
-            )
-        }
-
-        if (isLevelFailed) {
-            LevelFailedDialog(
-                onRetry = { viewModel.loadLevel(level) },
-                onBackToLevels = onBack
-            )
-        }
-
         // Ingredients grid
         currentLevel?.let { level ->
             if (level.ingredients.isEmpty()) {
@@ -150,8 +135,7 @@ fun GameScreen(
                             ingredient = ingredient,
                             onClick = {
                                 if (!isLevelComplete && !isLevelFailed) {
-                                    val success = viewModel.selectIngredient(ingredient)
-                                    showMessage = if (success) "Correct!" else "Try again!"
+                                    showMessage = viewModel.selectIngredient(ingredient)
                                 }
                             },
                             viewModel
@@ -163,10 +147,26 @@ fun GameScreen(
     }
 
     // Feedback message
-    showMessage?.let { message ->
-        MessageOverlay(message) {
+    showMessage?.let { correct ->
+        MessageOverlay(correct) {
             showMessage = null
         }
+    }
+
+    if (isLevelComplete) {
+        LevelCompleteDialog(
+            rating = viewModel.currentRating.value,
+            onNextLevel = onNextLevel,
+            onGoToRecipes = onGoToRecipes,
+            onBackToLevels = onBack
+        )
+    }
+
+    if (isLevelFailed) {
+        LevelFailedDialog(
+            onRetry = { viewModel.loadLevel(level) },
+            onBackToLevels = onBack
+        )
     }
 }
 
@@ -236,9 +236,12 @@ fun IngredientItem(
 }
 
 @Composable
-fun MessageOverlay(message: String, onDismiss: () -> Unit) {
+fun MessageOverlay(correct: Boolean, onDismiss: () -> Unit) {
+    val image = if(correct) R.drawable.check else R.drawable.clear
+    val message = if(correct) "Correct!" else "Try again!"
+
     LaunchedEffect(message) {
-        kotlinx.coroutines.delay(500)
+        kotlinx.coroutines.delay(1000)
         onDismiss()
     }
 
@@ -253,12 +256,22 @@ fun MessageOverlay(message: String, onDismiss: () -> Unit) {
                 .padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = message,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
-            )
+            Column {
+                Image(
+                    painter = painterResource(id = image),
+                    contentDescription = message,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    contentScale = ContentScale.Fit
+                )
+                Text(
+                    text = message,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
         }
     }
 }
@@ -359,6 +372,7 @@ fun LevelFailedDialog(
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Text(
                 text = "Level Failed!",
                 fontSize = 24.sp,

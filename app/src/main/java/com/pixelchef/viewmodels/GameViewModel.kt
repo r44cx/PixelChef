@@ -123,6 +123,7 @@ class GameViewModel : ViewModel() {
             _correctlySelectedIngredients.value = emptyList()
             _wronglySelectedIngredients.value = emptyList()
             _isLevelComplete.value = false
+            _isLevelFailed.value = false
         }
     }
 
