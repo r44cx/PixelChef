@@ -16,7 +16,7 @@ Technologies:
 
 Technical feasability:
 
-Android SDK and Kotlin/Java are suitable for this project. These tools are well-supported and contain the required UI/UX elements, animations, and interactions. Android’s View components will help to create clickable ingredients or make selections,... (supporting touch interaction). Levels can have predefined difficulty parameters that determine recipe complexity and the number of ingredients. Using a database or local storage (e.g., SQLite or SharedPreferences), we can save and manage levels, unlocked recipes, and player progress. Unlock logic (for the levels) can be managed with a simple flag or state variable linked to the level completion status.
+Android SDK and Kotlin/Java are suitable for this project. These tools are well-supported and contain the required UI/UX elements, animations, and interactions. Android’s View components will help to create clickable ingredients or make selections,... (supporting touch interaction). Levels can have predefined difficulty parameters that determine recipe complexity and the number of ingredients. Using a database or local storage (e.g., SQLite or JSON), we can save and manage levels, unlocked recipes, and player progress. Unlock logic (for the levels) can be managed with a simple flag or state variable linked to the level completion status.
 
 User interaction:
 
