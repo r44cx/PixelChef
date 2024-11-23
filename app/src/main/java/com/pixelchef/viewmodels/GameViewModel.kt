@@ -1,9 +1,14 @@
 package com.pixelchef.viewmodels
 
+import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
+import android.graphics.drawable.Drawable
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.pixelchef.R
 import com.pixelchef.models.Ingredient
 import com.pixelchef.models.Level
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -73,6 +78,10 @@ class GameViewModel : ViewModel() {
         if (levelId == 1) return true
         // Other levels are unlocked if the previous level is completed
         return _completedLevels.value.contains(levelId - 1)
+    }
+
+    fun getDrawableId(context: Context, drawableName: String): Int {
+        return context.resources.getIdentifier(drawableName, "drawable", context.packageName).takeIf { it != 0 } ?: R.drawable.ingredient_placeholder
     }
 
     fun getAllLevels(): List<Level> = allLevels
@@ -159,7 +168,7 @@ class GameViewModel : ViewModel() {
             Instructions:
             ${level.recipe.instructions.joinToString("\n") { "- $it" }}
             
-            Is Unlocked: ${level.isUnlocked}
+            Rating: ${level.rating}
         """.trimIndent()
     }
 } 

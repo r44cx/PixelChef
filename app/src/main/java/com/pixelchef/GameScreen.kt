@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -30,7 +31,11 @@ import com.pixelchef.models.Ingredient
 import com.pixelchef.viewmodels.GameViewModel
 
 @Composable
-fun GameScreen(level: Int, onBack: () -> Unit, viewModel: GameViewModel = viewModel()) {
+fun GameScreen(
+    level: Int,
+    onBack: () -> Unit,
+    viewModel: GameViewModel = viewModel()
+) {
     var showMessage by remember { mutableStateOf<String?>(null) }
     
     LaunchedEffect(level) {
@@ -42,6 +47,12 @@ fun GameScreen(level: Int, onBack: () -> Unit, viewModel: GameViewModel = viewMo
     val selectedIngredients by viewModel.selectedIngredients.collectAsState()
     val isLevelComplete by viewModel.isLevelComplete.collectAsState()
 
+    Image(
+        painter = painterResource(id = R.drawable.gradient),
+        contentDescription = null,
+        modifier = Modifier.fillMaxSize(),
+        contentScale = ContentScale.Crop
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -50,11 +61,11 @@ fun GameScreen(level: Int, onBack: () -> Unit, viewModel: GameViewModel = viewMo
         // Back button
         Button(
             onClick = onBack,
-            colors = ButtonDefaults.buttonColors(Color.Transparent)
+            shape = RectangleShape,
+            colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
         ) {
-            Text("< Back", color = colorResource(R.color.colorTextPrimary))
+            Text("< Back", fontSize = 14.sp, color = colorResource(R.color.colorTextSecondary))
         }
-
         // Debug output
         currentLevel?.let { level ->
             Text(
@@ -63,13 +74,6 @@ fun GameScreen(level: Int, onBack: () -> Unit, viewModel: GameViewModel = viewMo
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(vertical = 8.dp)
             )
-          // Text(
-          //     text = viewModel.getLevelDebugString(level),
-          //     color = Color.Red,
-          //     modifier = Modifier
-          //         .background(Color.Black.copy(alpha = 0.1f))
-          //         .padding(8.dp)
-          // )
         }
 
         // Recipe image
@@ -103,7 +107,14 @@ fun GameScreen(level: Int, onBack: () -> Unit, viewModel: GameViewModel = viewMo
             
             // Progress indicator
             Text(
-                text = "Progress: ${viewModel.getSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()}",
+                text = "Correct: ${viewModel.getSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()} ",
+                fontSize = 16.sp,
+                color = Color.Gray
+            )
+
+            // Progress indicator
+            Text(
+                text = "Failure: ${viewModel.getSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()}",
                 fontSize = 16.sp,
                 color = Color.Gray
             )
@@ -130,9 +141,10 @@ fun GameScreen(level: Int, onBack: () -> Unit, viewModel: GameViewModel = viewMo
             } else {
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(3),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     items(level.availableIngredients) { ingredient ->
                         IngredientItem(
@@ -142,7 +154,8 @@ fun GameScreen(level: Int, onBack: () -> Unit, viewModel: GameViewModel = viewMo
                                     val success = viewModel.selectIngredient(ingredient)
                                     showMessage = if (success) "Correct!" else "Try again!"
                                 }
-                            }
+                            },
+                            viewModel
                         )
                     }
                 }
@@ -161,7 +174,8 @@ fun GameScreen(level: Int, onBack: () -> Unit, viewModel: GameViewModel = viewMo
 @Composable
 fun IngredientItem(
     ingredient: Ingredient,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    viewModel: GameViewModel
 ) {
     Box(
         modifier = Modifier
@@ -170,31 +184,23 @@ fun IngredientItem(
             .background(colorResource(R.color.buttonGameBackground))
             .clickable(onClick = onClick)
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
+        Column {
             val context = LocalContext.current
-            val imageResId = remember(ingredient.imageResource) {
-                context.resources.getIdentifier(
-                    ingredient.imageResource,
-                    "drawable",
-                    context.packageName
-                ).takeIf { it != 0 } ?: R.drawable.ingredient_placeholder
-            }
+            val imageResId = viewModel.getDrawableId(LocalContext.current, ingredient.imageResource)
             
             if (imageResId == R.drawable.ingredient_placeholder) {
                 // Show text placeholder if image resource not found
                 Box(
                     modifier = Modifier
                         .weight(1f)
+                        .width(150.dp)
                         .padding(8.dp),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
+
                 ) {
                     Text(
                         text = ingredient.name.first().toString(),
-                        fontSize = 24.sp,
+                        fontSize = 48.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -208,18 +214,19 @@ fun IngredientItem(
                     contentScale = ContentScale.Fit
                 )
             }
-            
-            Text(
-                text = ingredient.name,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .background(Color(0x70FFFFFF))
-                    .fillMaxWidth()
-                    .padding(4.dp),
-                textAlign = TextAlign.Center
-            )
+        }
+        Box(
+            modifier = Modifier
+                .height(30.dp)
+                .width(150.dp)
+                .align(Alignment.BottomCenter)
+                .background( Color(0x70FFFFFF)), // Transparency,
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(text = ingredient.name, fontSize = 14.sp, fontWeight = FontWeight.Bold,color = colorResource(R.color.colorTextPrimary))
         }
     }
+
 }
 
 @Composable

@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "rating": 2,
     "name": "Simple Salad",
     "ingredients": [
       {
@@ -38,7 +39,7 @@
         "imageResource": "ingredients_onion"
       }
     ],
-    "image": "meals_salad",
+    "image": "meals_meal1",
     "recipe": {
       "description": "A fresh and crispy salad",
       "preparationTime": "10 min",
@@ -55,6 +56,7 @@
   },
   {
     "id": 2,
+    "rating": 0,
     "name": "Margherita Pizza",
     "ingredients": [
       {
@@ -100,7 +102,7 @@
         "imageResource": "ingredients_mushrooms"
       }
     ],
-    "image": "meals_pizza",
+    "image": "meals_meal1",
     "recipe": {
       "description": "Classic Italian pizza with fresh ingredients",
       "preparationTime": "30 min",

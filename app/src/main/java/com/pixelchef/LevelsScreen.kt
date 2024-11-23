@@ -1,5 +1,6 @@
 package com.pixelchef
 
+import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -7,21 +8,25 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -42,7 +47,12 @@ fun LevelsScreen(
             println("Level ${level.id}: ${level.name} (Unlocked: ${viewModel.isLevelUnlocked(level.id)})")
         }
     }
-
+    Image(
+        painter = painterResource(id = R.drawable.gradient),
+        contentDescription = null,
+        modifier = Modifier.fillMaxSize(),
+        contentScale = ContentScale.Crop
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -51,9 +61,10 @@ fun LevelsScreen(
         // Back button
         Button(
             onClick = onBack,
-            colors = ButtonDefaults.buttonColors(Color.Transparent)
+            shape = RectangleShape,
+            colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
         ) {
-            Text("< Back", fontSize = 18.sp, color = colorResource(R.color.colorTextPrimary))
+            Text("< Back", fontSize = 14.sp, color = colorResource(R.color.colorTextSecondary))
         }
 
         Text(
@@ -81,7 +92,9 @@ fun LevelsScreen(
 
                 LevelItem(
                     levelNumber = level.id,
+                    rating = level.rating,
                     isUnlocked = isUnlocked,
+                    image = viewModel.getDrawableId(LocalContext.current, level.image),
                     onClick = { if (isUnlocked) onSelectLevel(level.id) }
                 )
             }
@@ -92,38 +105,74 @@ fun LevelsScreen(
 @Composable
 fun LevelItem(
     levelNumber: Int,
+    rating: Int,
     isUnlocked: Boolean,
+    image: Int,
     onClick: () -> Unit
 ) {
     Box(
         modifier = Modifier
+            .width(150.dp)
             .aspectRatio(1f)
-            .clip(RoundedCornerShape(8.dp))
-            .background(
-                if (isUnlocked) colorResource(R.color.buttonGameBackground)
-                else Color.Gray.copy(alpha = 0.5f)
-            )
-            .clickable(enabled = isUnlocked, onClick = onClick)
+            .clip(RoundedCornerShape(10.dp))
+            .clickable(enabled = isUnlocked, onClick = onClick),
+        contentAlignment = Alignment.Center
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
+        Image(
+            painter = painterResource(id = image),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background( if (isUnlocked) Color(0x70FFFFFF) else Color(0x90000000)) // Transparency
+        )
+
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = levelNumber.toString(),
-                fontSize = 24.sp,
+                fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
-                color = if (isUnlocked) Color.Black else Color.White.copy(alpha = 0.5f)
+                color = colorResource(if(isUnlocked) R.color.colorTextPrimary else R.color.colorTextSecondary)
             )
-            
+            Spacer(modifier = Modifier.height(4.dp))
             if (!isUnlocked) {
                 Text(
                     text = "Locked",
                     fontSize = 14.sp,
-                    color = Color.White.copy(alpha = 0.5f)
+                    color = colorResource(R.color.colorTextSecondary)
                 )
+            } else {
+                StarsForRating(rating);
             }
         }
     }
+}
+
+@Composable
+fun StarsForRating(rating: Int) {
+    val filledStarColor = colorResource(R.color.ratingStars)
+    val unfilledStarColor = colorResource(R.color.buttonGameBackground)
+
+    val starText = buildAnnotatedString {
+        append(" ")
+        for (i in 1..3) {
+            withStyle(
+                style = SpanStyle(
+                    color = if (i <= rating) filledStarColor else unfilledStarColor,
+                    fontSize = 20.sp
+                )
+            ) {
+                append("★ ") // Add a star and space
+            }
+        }
+    }
+
+    // Display the stars
+    BasicText(
+        text = starText
+    )
 }

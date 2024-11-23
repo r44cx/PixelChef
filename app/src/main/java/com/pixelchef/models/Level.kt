@@ -1,5 +1,7 @@
 package com.pixelchef.models
 
+import android.content.Context
+import androidx.core.content.ContextCompat
 import com.google.gson.annotations.SerializedName
 
 data class Level(
@@ -16,7 +18,9 @@ data class Level(
     @SerializedName("recipe")
     val recipe: Recipe,
     @SerializedName("isUnlocked")
-    val isUnlocked: Boolean = false
+    val isUnlocked: Boolean = false,
+    @SerializedName("rating")
+    val rating: Int
 ) {
     fun debug() {
         println("Level: $id")
