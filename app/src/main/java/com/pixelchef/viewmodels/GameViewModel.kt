@@ -116,7 +116,9 @@ class GameViewModel : ViewModel() {
                         state.copy(rating = 0)
                     }
                 }
+                
             }
+            _currentRating.value = GameConstants.MAX_RATING
             _currentLevel.value = level
             _correctlySelectedIngredients.value = emptyList()
             _wronglySelectedIngredients.value = emptyList()
