@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pixelchef.viewmodels.GameViewModel
-zimport com.pixelchef.models.GameState
+import com.pixelchef.models.GameState
 
 
 @Composable
