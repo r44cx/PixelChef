@@ -16,6 +16,8 @@ import com.pixelchef.utils.GameProgressManager
 import com.pixelchef.models.GameState
 
 
+
+
 class GameViewModel : ViewModel() {
     private val _currentLevel = MutableStateFlow<Level?>(null)
     val currentLevel: StateFlow<Level?> = _currentLevel
@@ -29,6 +31,10 @@ class GameViewModel : ViewModel() {
 
     private val _isLevelComplete = MutableStateFlow(false)
     val isLevelComplete: StateFlow<Boolean> = _isLevelComplete
+
+
+    private val _isLevelFailed = MutableStateFlow(false)
+    val isLevelFailed: StateFlow<Boolean> = _isLevelFailed
 
     private var allLevels: List<Level> = emptyList()
 
@@ -154,6 +160,7 @@ class GameViewModel : ViewModel() {
                     )
                 }
             }
+
             return true
         } else {
             // Wrong ingredient selected
@@ -169,6 +176,12 @@ class GameViewModel : ViewModel() {
                 _isLevelComplete.value = true
             }
             _wronglySelectedIngredients.value += ingredient
+
+            // Check if level is complete after adding ingredient
+            if (_wronglySelectedIngredients.value.size == GameConstants.MAX_WRONG_INGREDIENTS) {
+                _isLevelFailed.value = true
+            }
+
             return false
         }
     }
@@ -177,7 +190,8 @@ class GameViewModel : ViewModel() {
         return _correctlySelectedIngredients.value.any { it.name == ingredientName } || _wronglySelectedIngredients.value.any { it.name == ingredientName }
     }
 
-    fun getSelectedIngredientsCount(): Int = _correctlySelectedIngredients.value.size
+    fun getCorrectSelectedIngredientsCount(): Int = _correctlySelectedIngredients.value.size
+    fun getWrongSelectedIngredientsCount(): Int = _wronglySelectedIngredients.value.size
     fun getTotalRequiredIngredients(): Int = _currentLevel.value?.ingredients?.filter {  it.correct }?.size ?: 0
 
     fun getGameState(levelId: Int): GameState {
