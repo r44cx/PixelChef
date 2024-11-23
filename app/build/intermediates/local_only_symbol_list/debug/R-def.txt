@@ -1,5 +1,9 @@
 R_DEF: Internal format may change without notice
 local
+attr? exampleColor
+attr? exampleDimension
+attr? exampleDrawable
+attr? exampleString
 color black
 color purple_200
 color purple_500
@@ -20,3 +24,5 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
 style Theme.PixelChef
+style Widget.Theme.PixelChef.MyView
+styleable LevelsScreen exampleString exampleDimension exampleColor exampleDrawable

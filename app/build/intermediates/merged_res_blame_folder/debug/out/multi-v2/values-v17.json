@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.pixelchef.app-mergeDebugResources-26:/values-v17/values-v17.xml",
+            "outputFile": "com.pixelchef.app-mergeDebugResources-27:/values-v17/values-v17.xml",
             "map": [
                 {
-                    "source": "/home/dev/.gradle/caches/transforms-3/348d94deb13ce0f676bb4eb5d9bc5b7d/transformed/appcompat-1.6.1/res/values-v17/values-v17.xml",
+                    "source": "C:\\Users\\CDot\\.gradle\\caches\\8.9\\transforms\\b9398e298918d45ceed86aa123815a76\\transformed\\appcompat-1.6.1\\res\\values-v17\\values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,25,29,33,37,40,43,46,50,53,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

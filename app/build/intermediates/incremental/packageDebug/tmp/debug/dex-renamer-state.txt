@@ -1,16 +1,19 @@
-#Wed Oct 02 16:09:05 CEST 2024
-base.0=/home/dev/cursor/moba/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/home/dev/cursor/moba/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.2=/home/dev/cursor/moba/app/build/intermediates/dex/debug/mergeProjectDexDebug/12/classes.dex
-base.3=/home/dev/cursor/moba/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
-base.4=/home/dev/cursor/moba/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
+#Sat Nov 16 22:43:28 CET 2024
+base.0=C\:\\Users\\CDot\\StudioProjects\\PixelChef\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\CDot\\StudioProjects\\PixelChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\CDot\\StudioProjects\\PixelChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.3=C\:\\Users\\CDot\\StudioProjects\\PixelChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
+base.4=C\:\\Users\\CDot\\StudioProjects\\PixelChef\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.5=C\:\\Users\\CDot\\StudioProjects\\PixelChef\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=12/classes.dex
-path.3=7/classes.dex
-path.4=8/classes.dex
+path.3=8/classes.dex
+path.4=classes2.dex
+path.5=11/classes.dex
 renamed.0=classes.dex
 renamed.1=classes2.dex
 renamed.2=classes3.dex
 renamed.3=classes4.dex
 renamed.4=classes5.dex
+renamed.5=classes6.dex

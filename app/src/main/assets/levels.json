@@ -2,22 +2,94 @@
   {
     "id": 1,
     "name": "Simple Salad",
-    "ingredients": ["Lettuce", "Tomato", "Cucumber"],
-    "availableIngredients": ["Lettuce", "Tomato", "Cucumber", "Carrot", "Onion"],
-    "image": "simple_salad"
+    "ingredients": [
+      {
+        "name": "Lettuce",
+        "imageResource": "ingredients_lettuce",
+        "correct": true
+      },
+      {
+        "name": "Tomato",
+        "imageResource": "ingredients_tomato",
+        "correct": true
+      },
+      {
+        "name": "Cucumber",
+        "imageResource": "ingredients_cucumber",
+        "correct": true
+      },
+      {
+        "name": "Carrot",
+        "imageResource": "ingredients_carrot",
+        "correct": false
+      },
+      {
+        "name": "Onion",
+        "imageResource": "ingredients_onion",
+        "correct": false
+      }
+    ],
+    "image": "meals_meal1",
+    "recipe": {
+      "description": "A fresh and crispy salad",
+      "preparationTime": "10 min",
+      "difficulty": "Easy",
+      "instructions": [
+        "Wash all vegetables thoroughly",
+        "Cut the lettuce into bite-sized pieces",
+        "Slice tomatoes and cucumbers",
+        "Mix all ingredients in a bowl",
+        "Season to taste"
+      ]
+    }
   },
   {
     "id": 2,
     "name": "Margherita Pizza",
-    "ingredients": ["Pizza Dough", "Tomato Sauce", "Mozzarella", "Basil"],
-    "availableIngredients": ["Pizza Dough", "Tomato Sauce", "Mozzarella", "Basil", "Pepperoni", "Mushrooms", "Olives"],
-    "image": "margherita_pizza"
-  },
-  {
-    "id": 3,
-    "name": "Spaghetti Carbonara",
-    "ingredients": ["Spaghetti", "Eggs", "Pancetta", "Parmesan", "Black Pepper"],
-    "availableIngredients": ["Spaghetti", "Eggs", "Pancetta", "Parmesan", "Black Pepper", "Cream", "Garlic", "Onion"],
-    "image": "spaghetti_carbonara"
+    "ingredients": [
+      {
+        "name": "Pizza Dough",
+        "imageResource": "ingredients_dough",
+        "correct": true
+      },
+      {
+        "name": "Tomato Sauce",
+        "imageResource": "ingredients_tomato_sauce",
+        "correct": true
+      },
+      {
+        "name": "Mozzarella",
+        "imageResource": "ingredients_mozzarella",
+        "correct": true
+      },
+      {
+        "name": "Basil",
+        "imageResource": "ingredients_basil",
+        "correct": true
+      },
+      {
+        "name": "Pepperoni",
+        "imageResource": "ingredients_pepperoni",
+        "correct": false
+      },
+      {
+        "name": "Mushrooms",
+        "imageResource": "ingredients_mushrooms",
+        "correct": false
+      }
+    ],
+    "image": "meals_meal1",
+    "recipe": {
+      "description": "Classic Italian pizza with fresh ingredients",
+      "preparationTime": "30 min",
+      "difficulty": "Medium",
+      "instructions": [
+        "Roll out the pizza dough",
+        "Spread tomato sauce evenly",
+        "Add sliced mozzarella",
+        "Bake at 220°C for 15 minutes",
+        "Add fresh basil leaves"
+      ]
+    }
   }
 ]

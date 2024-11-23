@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.pixelchef.app-mergeDebugResources-26:/values-h550dp-port-v13/values-h550dp-port-v13.xml",
+            "outputFile": "com.pixelchef.app-mergeDebugResources-27:/values-h550dp-port-v13/values-h550dp-port-v13.xml",
             "map": [
                 {
-                    "source": "/home/dev/.gradle/caches/transforms-3/3417f7cef00e47a5a180107e9de5425f/transformed/material-1.9.0/res/values-h550dp-port-v13/values-h550dp-port-v13.xml",
+                    "source": "C:\\Users\\CDot\\.gradle\\caches\\8.9\\transforms\\ed2c42d57711ee81e4401cebcb92f2f0\\transformed\\material-1.9.0\\res\\values-h550dp-port-v13\\values-h550dp-port-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

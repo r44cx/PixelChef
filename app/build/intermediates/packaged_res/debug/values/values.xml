@@ -21,4 +21,14 @@
         <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryVariant</item>
         
     </style>
+    <style name="Widget.Theme.PixelChef.MyView" parent="">
+        <item name="android:background">@color/gray_400</item>
+        <item name="exampleColor">@color/light_blue_400</item>
+    </style>
+    <declare-styleable name="LevelsScreen">
+        <attr format="string" name="exampleString"/>
+        <attr format="dimension" name="exampleDimension"/>
+        <attr format="color" name="exampleColor"/>
+        <attr format="color|reference" name="exampleDrawable"/>
+    </declare-styleable>
 </resources>
