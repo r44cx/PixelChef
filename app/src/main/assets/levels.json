@@ -5,37 +5,28 @@
     "ingredients": [
       {
         "name": "Lettuce",
-        "imageResource": "ingredients_lettuce"
+        "imageResource": "ingredients_lettuce",
+        "correct": true
       },
       {
         "name": "Tomato",
-        "imageResource": "ingredients_tomato"
+        "imageResource": "ingredients_tomato",
+        "correct": true
       },
       {
         "name": "Cucumber",
-        "imageResource": "ingredients_cucumber"
-      }
-    ],
-    "availableIngredients": [
-      {
-        "name": "Lettuce",
-        "imageResource": "ingredients_lettuce"
-      },
-      {
-        "name": "Tomato",
-        "imageResource": "ingredients_tomato"
-      },
-      {
-        "name": "Cucumber",
-        "imageResource": "ingredients_cucumber"
+        "imageResource": "ingredients_cucumber",
+        "correct": true
       },
       {
         "name": "Carrot",
-        "imageResource": "ingredients_carrot"
+        "imageResource": "ingredients_carrot",
+        "correct": false
       },
       {
         "name": "Onion",
-        "imageResource": "ingredients_onion"
+        "imageResource": "ingredients_onion",
+        "correct": false
       }
     ],
     "image": "meals_meal1",
@@ -58,45 +49,33 @@
     "ingredients": [
       {
         "name": "Pizza Dough",
-        "imageResource": "ingredients_dough"
+        "imageResource": "ingredients_dough",
+        "correct": true
       },
       {
         "name": "Tomato Sauce",
-        "imageResource": "ingredients_tomato_sauce"
+        "imageResource": "ingredients_tomato_sauce",
+        "correct": true
       },
       {
         "name": "Mozzarella",
-        "imageResource": "ingredients_mozzarella"
+        "imageResource": "ingredients_mozzarella",
+        "correct": true
       },
       {
         "name": "Basil",
-        "imageResource": "ingredients_basil"
-      }
-    ],
-    "availableIngredients": [
-      {
-        "name": "Pizza Dough",
-        "imageResource": "ingredients_dough"
-      },
-      {
-        "name": "Tomato Sauce",
-        "imageResource": "ingredients_tomato_sauce"
-      },
-      {
-        "name": "Mozzarella",
-        "imageResource": "ingredients_mozzarella"
-      },
-      {
-        "name": "Basil",
-        "imageResource": "ingredients_basil"
+        "imageResource": "ingredients_basil",
+        "correct": true
       },
       {
         "name": "Pepperoni",
-        "imageResource": "ingredients_pepperoni"
+        "imageResource": "ingredients_pepperoni",
+        "correct": false
       },
       {
         "name": "Mushrooms",
-        "imageResource": "ingredients_mushrooms"
+        "imageResource": "ingredients_mushrooms",
+        "correct": false
       }
     ],
     "image": "meals_meal1",
