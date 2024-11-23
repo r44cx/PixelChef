@@ -1,7 +1,6 @@
 [
   {
     "id": 1,
-    "rating": 2,
     "name": "Simple Salad",
     "ingredients": [
       {
@@ -51,12 +50,10 @@
         "Mix all ingredients in a bowl",
         "Season to taste"
       ]
-    },
-    "isUnlocked": false
+    }
   },
   {
     "id": 2,
-    "rating": 0,
     "name": "Margherita Pizza",
     "ingredients": [
       {
@@ -114,7 +111,6 @@
         "Bake at 220°C for 15 minutes",
         "Add fresh basil leaves"
       ]
-    },
-    "isUnlocked": false
+    }
   }
 ]

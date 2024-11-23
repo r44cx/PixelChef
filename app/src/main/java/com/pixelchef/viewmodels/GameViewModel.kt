@@ -15,6 +15,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.InputStreamReader
+import com.pixelchef.utils.GameProgressManager
+import com.pixelchef.models.GameState
+
 
 class GameViewModel : ViewModel() {
     private val _currentLevel = MutableStateFlow<Level?>(null)
@@ -31,7 +34,10 @@ class GameViewModel : ViewModel() {
 
     private var allLevels: List<Level> = emptyList()
 
+    private lateinit var gameProgressManager: GameProgressManager
+
     fun initialize(context: Context) {
+        gameProgressManager = GameProgressManager(context)
         try {
             println("Attempting to load levels.json from assets...")
             
@@ -100,8 +106,13 @@ class GameViewModel : ViewModel() {
                 println("Loading level ${level.id}")
                 println("Available ingredients: ${level.availableIngredients}")
                 println("Required ingredients: ${level.ingredients}")
-            } else {
-                println("Level $levelId not found!")
+                
+                // Reset game state for this level if not completed
+                if (!gameProgressManager.getGameState(levelId).isCompleted) {
+                    gameProgressManager.updateGameState(levelId) { state ->
+                        state.copy(rating = 3)
+                    }
+                }
             }
             
             _currentLevel.value = level
@@ -113,6 +124,7 @@ class GameViewModel : ViewModel() {
     fun selectIngredient(ingredient: Ingredient): Boolean {
         val currentSelected = _selectedIngredients.value.toMutableList()
         val currentLevelValue = _currentLevel.value ?: return false
+        val currentGameState = gameProgressManager.getGameState(currentLevelValue.id)
 
         // Don't allow selecting if level is complete
         if (_isLevelComplete.value) return false
@@ -138,12 +150,33 @@ class GameViewModel : ViewModel() {
             // Check if level is complete after adding ingredient
             if (currentSelected.size == currentLevelValue.ingredients.size) {
                 _isLevelComplete.value = true
-                unlockLevel(currentLevelValue.id)
+                
+                // Only complete the level if rating is not 0
+                if (currentGameState.rating > 0) {
+                    // Save progress with current rating and unlock next level
+                    gameProgressManager.completeLevel(
+                        levelId = currentLevelValue.id,
+                        rating = currentGameState.rating
+                    )
+                }
             }
             return true
-        }
+        } else {
+            // Wrong ingredient selected
+            val newRating = (currentGameState.rating - 1).coerceAtLeast(0)
+            
+            // Update game state with new rating
+            gameProgressManager.updateGameState(currentLevelValue.id) { state ->
+                state.copy(rating = newRating)
+            }
 
-        return false
+            // If rating reaches 0, fail the level but don't unlock next level
+            if (newRating == 0) {
+                _isLevelComplete.value = true
+            }
+            
+            return false
+        }
     }
 
     fun getSelectedIngredientsCount(): Int = _selectedIngredients.value.size
@@ -167,8 +200,18 @@ class GameViewModel : ViewModel() {
             
             Instructions:
             ${level.recipe.instructions.joinToString("\n") { "- $it" }}
-            
-            Rating: ${level.rating}
         """.trimIndent()
+    }
+
+    fun getGameState(levelId: Int): GameState {
+        return gameProgressManager.getGameState(levelId)
+    }
+
+    fun resetProgress() {
+        gameProgressManager.clearProgress()
+        // Optionally reload the current level if in a level
+        _currentLevel.value?.let { level ->
+            loadLevel(level.id)
+        }
     }
 } 

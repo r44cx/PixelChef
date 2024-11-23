@@ -39,19 +39,28 @@ fun PixelChefApp() {
 
     NavHost(navController, startDestination = "mainMenu") {
         composable("mainMenu") {
-            MainMenuScreen { route -> navController.navigate(route) }
+            MainMenuScreen { route -> 
+                println("Navigating to route: $route")  // Debug log
+                navController.navigate(route)
+            }
         }
         composable("levels") {
             LevelsScreen(
                 onBack = { navController.popBackStack() },
                 onSelectLevel = { level -> navController.navigate("levelDetail/$level") },
-                viewModel = gameViewModel  // Pass the same viewModel instance
+                viewModel = gameViewModel
             )
         }
         composable("recipes") {
             RecipeScreen(
                 onBack = { navController.popBackStack() },
-                viewModel = gameViewModel  // Pass the same viewModel instance
+                viewModel = gameViewModel
+            )
+        }
+        composable("settings") {
+            SettingsScreen(
+                onBack = { navController.popBackStack() },
+                viewModel = gameViewModel
             )
         }
         composable("levelDetail/{level}") { backStackEntry ->
@@ -59,7 +68,7 @@ fun PixelChefApp() {
             GameScreen(
                 level = level,
                 onBack = { navController.popBackStack() },
-                viewModel = gameViewModel  // Pass the same viewModel instance
+                viewModel = gameViewModel
             )
         }
     }

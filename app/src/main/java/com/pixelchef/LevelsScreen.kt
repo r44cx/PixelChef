@@ -1,6 +1,5 @@
 package com.pixelchef
 
-import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,6 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pixelchef.viewmodels.GameViewModel
+zimport com.pixelchef.models.GameState
+
 
 @Composable
 fun LevelsScreen(
@@ -74,13 +75,6 @@ fun LevelsScreen(
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
-        // Debug text
-        Text(
-            text = "Debug: Found ${levels.size} levels",
-            color = Color.Red,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
         LazyVerticalGrid(
             columns = GridCells.Fixed(3),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -88,11 +82,12 @@ fun LevelsScreen(
         ) {
             items(levels.size) { index ->
                 val level = levels[index]
+                val gameState = viewModel.getGameState(level.id)
                 val isUnlocked = viewModel.isLevelUnlocked(level.id)
 
                 LevelItem(
                     levelNumber = level.id,
-                    rating = level.rating,
+                    gameState = gameState,
                     isUnlocked = isUnlocked,
                     image = viewModel.getDrawableId(LocalContext.current, level.image),
                     onClick = { if (isUnlocked) onSelectLevel(level.id) }
@@ -105,7 +100,7 @@ fun LevelsScreen(
 @Composable
 fun LevelItem(
     levelNumber: Int,
-    rating: Int,
+    gameState: GameState,
     isUnlocked: Boolean,
     image: Int,
     onClick: () -> Unit
@@ -128,7 +123,7 @@ fun LevelItem(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background( if (isUnlocked) Color(0x70FFFFFF) else Color(0x90000000)) // Transparency
+                .background(if (isUnlocked) Color(0x70FFFFFF) else Color(0x90000000))
         )
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -145,8 +140,8 @@ fun LevelItem(
                     fontSize = 14.sp,
                     color = colorResource(R.color.colorTextSecondary)
                 )
-            } else {
-                StarsForRating(rating);
+            } else if (gameState.isCompleted) {
+                StarsForRating(gameState.rating)
             }
         }
     }
@@ -166,13 +161,10 @@ fun StarsForRating(rating: Int) {
                     fontSize = 20.sp
                 )
             ) {
-                append("★ ") // Add a star and space
+                append("★ ")
             }
         }
     }
 
-    // Display the stars
-    BasicText(
-        text = starText
-    )
+    BasicText(text = starText)
 }

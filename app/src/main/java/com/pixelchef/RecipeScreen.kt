@@ -10,6 +10,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,13 +34,21 @@ fun RecipeScreen(
         viewModel.isLevelUnlocked(level.id)
     }
 
+    Image(
+        painter = painterResource(id = R.drawable.gradient),
+        contentDescription = null,
+        modifier = Modifier.fillMaxSize(),
+        contentScale = ContentScale.Crop
+    )
+
     Column(modifier = Modifier.fillMaxSize()) {
         // Back button
         Button(
             onClick = onBack,
-            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surface)
+            shape = RectangleShape,
+            colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
         ) {
-            Text("< Back")
+            Text("< Back", fontSize = 14.sp, color = colorResource(R.color.colorTextSecondary))
         }
 
         Text(
@@ -49,14 +60,14 @@ fun RecipeScreen(
 
         LazyColumn {
             items(unlockedLevels) { level ->
-                RecipeCard(level)
+                RecipeCard(level, viewModel.getGameState(level.id).isCompleted)
             }
         }
     }
 }
 
 @Composable
-fun RecipeCard(level: Level) {
+fun RecipeCard(level: Level, isCompleted: Boolean) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -72,10 +83,24 @@ fun RecipeCard(level: Level) {
                 Text("Difficulty: ${level.recipe.difficulty}")
             }
             
-            Spacer(modifier = Modifier.height(16.dp))
-            Text("Instructions:", fontWeight = FontWeight.Bold)
-            level.recipe.instructions.forEachIndexed { index, instruction ->
-                Text("${index + 1}. $instruction")
+            if (isCompleted) {
+                Spacer(modifier = Modifier.height(16.dp))
+                Text("Required Ingredients:", fontWeight = FontWeight.Bold)
+                level.ingredients.forEach { ingredient ->
+                    Text("• ${ingredient.name}")
+                }
+                
+                Spacer(modifier = Modifier.height(16.dp))
+                Text("Instructions:", fontWeight = FontWeight.Bold)
+                level.recipe.instructions.forEachIndexed { index, instruction ->
+                    Text("${index + 1}. $instruction")
+                }
+            } else {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    "Complete this level to unlock the recipe!",
+                    color = colorResource(R.color.colorTextSecondary)
+                )
             }
         }
     }
