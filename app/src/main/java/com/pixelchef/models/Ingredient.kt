@@ -6,5 +6,7 @@ data class Ingredient(
     @SerializedName("name")
     val name: String,
     @SerializedName("imageResource")
-    val imageResource: String
+    val imageResource: String,
+    @SerializedName("correct")
+    val correct: Boolean
 ) 

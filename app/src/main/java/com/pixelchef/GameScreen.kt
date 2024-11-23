@@ -44,7 +44,6 @@ fun GameScreen(
     }
 
     val currentLevel by viewModel.currentLevel.collectAsState()
-    val selectedIngredients by viewModel.selectedIngredients.collectAsState()
     val isLevelComplete by viewModel.isLevelComplete.collectAsState()
 
     Image(
@@ -132,7 +131,7 @@ fun GameScreen(
 
         // Ingredients grid
         currentLevel?.let { level ->
-            if (level.availableIngredients.isEmpty()) {
+            if (level.ingredients.isEmpty()) {
                 Text(
                     text = "No ingredients available",
                     modifier = Modifier.padding(16.dp),
@@ -146,7 +145,7 @@ fun GameScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    items(level.availableIngredients) { ingredient ->
+                    items(level.ingredients) { ingredient ->
                         IngredientItem(
                             ingredient = ingredient,
                             onClick = {
@@ -177,15 +176,15 @@ fun IngredientItem(
     onClick: () -> Unit,
     viewModel: GameViewModel
 ) {
+    val isSelect = viewModel.isIngredientSelected(ingredient.name);
     Box(
         modifier = Modifier
             .aspectRatio(1f)
             .clip(RoundedCornerShape(8.dp))
             .background(colorResource(R.color.buttonGameBackground))
-            .clickable(onClick = onClick)
+            .clickable(enabled = !isSelect, onClick = onClick)
     ) {
         Column {
-            val context = LocalContext.current
             val imageResId = viewModel.getDrawableId(LocalContext.current, ingredient.imageResource)
             
             if (imageResId == R.drawable.ingredient_placeholder) {
@@ -195,8 +194,7 @@ fun IngredientItem(
                         .weight(1f)
                         .width(150.dp)
                         .padding(8.dp),
-                    contentAlignment = Alignment.Center,
-
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = ingredient.name.first().toString(),
@@ -224,6 +222,14 @@ fun IngredientItem(
             contentAlignment = Alignment.Center,
         ) {
             Text(text = ingredient.name, fontSize = 14.sp, fontWeight = FontWeight.Bold,color = colorResource(R.color.colorTextPrimary))
+        }
+
+        if(isSelect) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0x90000000))
+            )
         }
     }
 

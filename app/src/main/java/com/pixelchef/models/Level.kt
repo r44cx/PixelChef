@@ -10,9 +10,7 @@ data class Level(
     @SerializedName("name")
     val name: String,
     @SerializedName("ingredients")
-    val ingredients: List<Ingredient>,
-    @SerializedName("availableIngredients")
-    val availableIngredients: List<Ingredient>,
+    var ingredients: List<Ingredient>,
     @SerializedName("image")
     val image: String,
     @SerializedName("recipe")
@@ -25,8 +23,7 @@ data class Level(
     fun debug() {
         println("Level: $id")
         println("Name: $name")
-        println("Required ingredients: ${ingredients.map { it.name }}")
-        println("Available ingredients: ${availableIngredients.map { it.name }}")
+        println("ingredients: ${ingredients.map { it.name }}")
         println("Recipe: ${recipe.description}")
     }
 }
