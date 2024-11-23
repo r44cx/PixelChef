@@ -85,10 +85,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun isLevelUnlocked(levelId: Int): Boolean {
-        // First level is always unlocked
-        if (levelId == 1) return true
-        // Other levels are unlocked if the previous level is completed
-        return _completedLevels.value.contains(levelId - 1)
+        return gameProgressManager.isLevelUnlocked(levelId)
     }
 
     @SuppressLint("DiscouragedApi")
@@ -127,13 +124,8 @@ class GameViewModel : ViewModel() {
         val currentLevelValue = _currentLevel.value ?: return false
         val currentGameState = gameProgressManager.getGameState(currentLevelValue.id)
 
-        // Don't allow selecting if level is complete
-        if (_isLevelComplete.value) return false
-
-        // Don't allow selecting more ingredients than needed
-        if (_correctlySelectedIngredients.value.size >= currentLevelValue.ingredients.size) {
-            return false
-        }
+        // Don't allow selecting if level is complete or failed
+        if (_isLevelComplete.value || _isLevelFailed.value) return false
 
         // Get remaining required ingredients (those that haven't been selected yet)
         val remainingRequired = currentLevelValue.ingredients.toMutableList()
@@ -145,22 +137,23 @@ class GameViewModel : ViewModel() {
         val isCorrect = remainingRequired.any { it.correct && it.name == ingredient.name }
 
         if (isCorrect) {
-            _correctlySelectedIngredients.value += ingredient
+            val newCorrectIngredients = _correctlySelectedIngredients.value + ingredient
+            _correctlySelectedIngredients.value = newCorrectIngredients
 
             // Check if level is complete after adding ingredient
-            if (_correctlySelectedIngredients.value.size == getTotalRequiredIngredients()) {
+            if (newCorrectIngredients.size == getTotalRequiredIngredients()) {
                 _isLevelComplete.value = true
                 
-                // Only complete the level if rating is not 0
-                if (currentGameState.rating > 0) {
-                    // Save progress with current rating and unlock next level
-                    gameProgressManager.completeLevel(
-                        levelId = currentLevelValue.id,
-                        rating = currentGameState.rating
-                    )
-                }
+                // Complete the level and unlock next level
+                gameProgressManager.completeLevel(
+                    levelId = currentLevelValue.id,
+                    rating = currentGameState.rating
+                )
+                
+                // Debug output
+                println("Level ${currentLevelValue.id} completed!")
+                println("Current rating: ${currentGameState.rating}")
             }
-
             return true
         } else {
             // Wrong ingredient selected
@@ -204,6 +197,12 @@ class GameViewModel : ViewModel() {
         _currentLevel.value?.let { level ->
             loadLevel(level.id)
         }
+    }
+
+    fun getNextUncompletedLevel(): Int {
+        return allLevels.find { level -> 
+            !gameProgressManager.getGameState(level.id).isCompleted 
+        }?.id ?: 1
     }
 
 } 

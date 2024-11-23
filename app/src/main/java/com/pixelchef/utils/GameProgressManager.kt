@@ -72,8 +72,8 @@ class GameProgressManager(private val context: Context) {
 
     fun isLevelUnlocked(levelId: Int): Boolean {
         return when {
-            levelId == 1 -> true
-            levelId > 1 -> getGameState(levelId - 1).isCompleted
+            levelId == 1 -> true  // First level always unlocked
+            gameStates.containsKey(levelId) -> gameStates[levelId]?.isUnlocked == true
             else -> false
         }
     }
@@ -83,10 +83,13 @@ class GameProgressManager(private val context: Context) {
     }
 
     fun completeLevel(levelId: Int, rating: Int) {
+        println("Completing level $levelId with rating $rating") // Debug log
+        
         // Mark current level as completed
         updateGameState(levelId) { state ->
             state.copy(
                 isCompleted = true,
+                isUnlocked = true,
                 rating = rating
             )
         }
@@ -94,13 +97,13 @@ class GameProgressManager(private val context: Context) {
         // Unlock next level
         val nextLevelId = levelId + 1
         updateGameState(nextLevelId) { state ->
-            state.copy(isUnlocked = true)
+            state.copy(
+                isUnlocked = true,
+                rating = 3  // Initialize with 3 stars
+            )
         }
         
         // Debug output
-        println("Completed level $levelId with rating $rating")
-        println("Unlocked level $nextLevelId")
-        println("Current game states: ${getAllGameStates()}")
     }
 
     fun clearProgress() {
