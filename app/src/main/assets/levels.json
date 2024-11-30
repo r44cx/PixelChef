@@ -29,28 +29,28 @@
   },
   {
     "id": 2,
-    "name": "Chicken Stir-Fry",
+    "name": "Chili Con Carne",
     "ingredients": [
-      { "name": "Chicken", "imageResource": "ingredients_chicken", "correct": true },
-      { "name": "Soy Sauce", "imageResource": "ingredients_soy_sauce", "correct": true },
-      { "name": "Bell Peppers", "imageResource": "ingredients_bell_peppers", "correct": true },
-      { "name": "Broccoli", "imageResource": "ingredients_broccoli", "correct": true },
-      { "name": "Garlic", "imageResource": "ingredients_garlic", "correct": true },
-      { "name": "Pasta", "imageResource": "ingredients_pasta", "correct": false },
-      { "name": "Cheese", "imageResource": "ingredients_cheese", "correct": false },
-      { "name": "Potatoes", "imageResource": "ingredients_potatoes", "correct": false },
-      { "name": "Spinach", "imageResource": "ingredients_spinach", "correct": false },
-      { "name": "Cream", "imageResource": "ingredients_cream", "correct": false }
+      {"name": "Ground Beef", "imageResource": "ingredients_ground_beef", "correct": true},
+      {"name": "Kidney Beans", "imageResource": "ingredients_kidney_beans", "correct": true},
+      {"name": "Tomato Sauce", "imageResource": "ingredients_tomato_sauce", "correct": true},
+      {"name": "Onions", "imageResource": "ingredients_onions", "correct": true},
+      {"name": "Spices", "imageResource": "ingredients_spices", "correct": true},
+      {"name": "Chicken", "imageResource": "ingredients_chicken", "correct": false},
+      {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+      {"name": "Rice", "imageResource": "ingredients_rice", "correct": false},
+      {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": false},
+      {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false}
     ],
-    "image": "meals_chicken_stir_fry",
+    "image": "meals_chili_con_carne",
     "recipe": {
-      "description": "A quick and healthy stir-fry dish with chicken and vegetables.",
-      "preparationTime": "20 min",
+      "description": "A hearty chili with ground beef and beans.",
+      "preparationTime": "40 min",
       "difficulty": "Medium",
       "instructions": [
-        "Cut chicken into bite-sized pieces and cook until browned.",
-        "Add chopped vegetables and stir-fry until tender-crisp.",
-        "Mix in soy sauce and garlic, then serve hot."
+        "Brown the ground beef with onions.",
+        "Add kidney beans, tomato sauce, and spices.",
+        "Simmer for 30 minutes and serve hot."
       ]
     }
   },
@@ -285,29 +285,29 @@
   },
   {
     "id": 10,
-    "name": "Chili Con Carne",
+    "name": "Chicken Stir-Fry",
     "ingredients": [
-        {"name": "Ground Beef", "imageResource": "ingredients_ground_beef", "correct": true},
-        {"name": "Kidney Beans", "imageResource": "ingredients_kidney_beans", "correct": true},
-        {"name": "Tomato Sauce", "imageResource": "ingredients_tomato_sauce", "correct": true},
-        {"name": "Onions", "imageResource": "ingredients_onions", "correct": true},
-        {"name": "Spices", "imageResource": "ingredients_spices", "correct": true},
-        {"name": "Chicken", "imageResource": "ingredients_chicken", "correct": false},
-        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
-        {"name": "Rice", "imageResource": "ingredients_rice", "correct": false},
-        {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": false},
-        {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false}
+      { "name": "Chicken", "imageResource": "ingredients_chicken", "correct": true },
+      { "name": "Soy Sauce", "imageResource": "ingredients_soy_sauce", "correct": true },
+      { "name": "Bell Peppers", "imageResource": "ingredients_bell_peppers", "correct": true },
+      { "name": "Broccoli", "imageResource": "ingredients_broccoli", "correct": true },
+      { "name": "Garlic", "imageResource": "ingredients_garlic", "correct": true },
+      { "name": "Pasta", "imageResource": "ingredients_pasta", "correct": false },
+      { "name": "Cheese", "imageResource": "ingredients_cheese", "correct": false },
+      { "name": "Potatoes", "imageResource": "ingredients_potatoes", "correct": false },
+      { "name": "Spinach", "imageResource": "ingredients_spinach", "correct": false },
+      { "name": "Cream", "imageResource": "ingredients_cream", "correct": false }
     ],
-    "image": "meals_chili_con_carne",
+    "image": "meals_chicken_stir_fry",
     "recipe": {
-        "description": "A hearty chili with ground beef and beans.",
-        "preparationTime": "40 min",
-        "difficulty": "Medium",
-        "instructions": [
-            "Brown the ground beef with onions.",
-            "Add kidney beans, tomato sauce, and spices.",
-            "Simmer for 30 minutes and serve hot."
-        ]
+      "description": "A quick and healthy stir-fry dish with chicken and vegetables.",
+      "preparationTime": "20 min",
+      "difficulty": "Medium",
+      "instructions": [
+        "Cut chicken into bite-sized pieces and cook until browned.",
+        "Add chopped vegetables and stir-fry until tender-crisp.",
+        "Mix in soy sauce and garlic, then serve hot."
+      ]
     }
   },
   { 
