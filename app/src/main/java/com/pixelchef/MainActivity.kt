@@ -6,9 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -37,18 +37,15 @@ fun PixelChefApp() {
         gameViewModel.initialize(context)
     }
 
+    PixelChefNavHost(navController, gameViewModel)
+}
+
+@Composable
+fun PixelChefNavHost(navController: NavHostController, gameViewModel: GameViewModel) {
     NavHost(navController, startDestination = "mainMenu") {
         composable("mainMenu") {
-            MainMenuScreen { route -> 
-                when (route) {
-                    "play" -> {
-                        // Get the next uncompleted level and navigate to it
-                        val nextLevel = gameViewModel.getNextUncompletedLevel()
-                        println("Play: Navigating to level $nextLevel")  // Debug log
-                        navController.navigate("levelDetail/$nextLevel")
-                    }
-                    else -> navController.navigate(route)
-                }
+            MainMenuScreen { route ->
+                handleNavigationFromMainMenu(route, navController, gameViewModel)
             }
         }
         composable("levels") {
@@ -72,20 +69,41 @@ fun PixelChefApp() {
         }
         composable("levelDetail/{level}") { backStackEntry ->
             val level = backStackEntry.arguments?.getString("level")?.toIntOrNull() ?: 1
-            GameScreen(
-                level = level,
-                onBack = { navController.popBackStack() },
-                onNextLevel = {
-                    navController.popBackStack()
-                    navController.navigate("levelDetail/${level + 1}")
-                },
-                onGoToRecipes = {
-                    navController.popBackStack()
-                    navController.navigate("recipes")
-                },
-                viewModel = gameViewModel
-            )
+            LevelDetailScreen(level, navController, gameViewModel)
         }
+    }
+}
+
+@Composable
+fun LevelDetailScreen(level: Int, navController: NavHostController, gameViewModel: GameViewModel) {
+    GameScreen(
+        level = level,
+        onBack = { navController.popBackStack() },
+        onNextLevel = {
+            navController.popBackStack()
+            navController.navigate("levelDetail/${level + 1}")
+        },
+        onGoToRecipes = {
+            navController.popBackStack()
+            navController.navigate("recipes")
+        },
+        viewModel = gameViewModel
+    )
+}
+
+private fun handleNavigationFromMainMenu(
+    route: String,
+    navController: NavHostController,
+    gameViewModel: GameViewModel
+) {
+    when (route) {
+        "play" -> {
+            val nextLevel = gameViewModel.getNextUncompletedLevel()
+            println("Play: Navigating to level $nextLevel") // Debug log
+            navController.navigate("levelDetail/$nextLevel")
+        }
+
+        else -> navController.navigate(route)
     }
 }
 
@@ -95,4 +113,3 @@ fun PixelChefTheme(content: @Composable () -> Unit) {
         content()
     }
 }
-

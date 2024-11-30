@@ -2,8 +2,8 @@ package com.pixelchef
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,46 +21,65 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pixelchef.ui.components.BackgroundImage
 
 @Composable
 fun MainMenuScreen(onNavigate: (String) -> Unit) {
-    Image(
-        painter = painterResource(id = R.drawable.gradient),
-        contentDescription = null,
-        modifier = Modifier.fillMaxSize(),
-        contentScale = ContentScale.Crop
-    )
-    Column(
-        modifier = Modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Row() {
-            Text(text = "PixelChef", fontSize = 48.sp)
-        }
-        Row() {
-            Image(
-                painterResource(id = R.drawable.pixelchef_logo),
-                contentDescription = "PixelChef",
-                contentScale = ContentScale.FillWidth,
-                modifier = Modifier
-                    .width(200.dp)
-            )
-        }
-        Column(
-            modifier = Modifier.height(250.dp),
-            verticalArrangement = Arrangement.spacedBy(15.dp)
-        ) {
-            MainButton("Play", "play", onNavigate)
-            MainButton("Levels", "levels", onNavigate)
-            MainButton("Recipes", "recipes", onNavigate)
-            MainButton("Settings", "settings", onNavigate)
-        }
-        Row { }
+        BackgroundImage()
+        MainMenuContent(onNavigate)
     }
 }
 
+@Composable
+fun MainMenuContent(onNavigate: (String) -> Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly
+    ) {
+        TitleText()
+        LogoImage()
+        MenuButtons(onNavigate)
+    }
+}
+
+@Composable
+fun TitleText() {
+    Text(
+        text = "PixelChef",
+        fontSize = 48.sp
+    )
+}
+
+@Composable
+fun LogoImage() {
+    Image(
+        painter = painterResource(id = R.drawable.pixelchef_logo),
+        contentDescription = "PixelChef Logo",
+        contentScale = ContentScale.FillWidth,
+        modifier = Modifier.width(200.dp)
+    )
+}
+
+@Composable
+fun MenuButtons(onNavigate: (String) -> Unit) {
+    Column(
+        modifier = Modifier.height(250.dp),
+        verticalArrangement = Arrangement.spacedBy(15.dp)
+    ) {
+        listOf(
+            "Play" to "play",
+            "Levels" to "levels",
+            "Recipes" to "recipes",
+            "Settings" to "settings"
+        ).forEach { (label, route) ->
+            MainButton(label, route, onNavigate)
+        }
+    }
+}
 
 @Composable
 fun MainButton(text: String, navigateTo: String, onNavigate: (String) -> Unit) {
@@ -73,7 +92,10 @@ fun MainButton(text: String, navigateTo: String, onNavigate: (String) -> Unit) {
             .height(50.dp),
         colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
     ) {
-        Text(text = text, color = colorResource(R.color.colorTextSecondary), fontSize = 20.sp)
+        Text(
+            text = text,
+            color = colorResource(R.color.colorTextSecondary),
+            fontSize = 20.sp
+        )
     }
 }
-

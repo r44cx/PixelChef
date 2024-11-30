@@ -16,47 +16,34 @@ class GameProgressManager(private val context: Context) {
     }
 
     private fun loadGameStates() {
-        try {
-            if (gameStateFile.exists()) {
+        if (gameStateFile.exists()) {
+            try {
                 val json = gameStateFile.readText()
                 val type = object : TypeToken<MutableMap<Int, GameState>>() {}.type
                 gameStates = gson.fromJson(json, type) ?: mutableMapOf()
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-            
-            // Always ensure first level is unlocked
-            if (!gameStates.containsKey(1)) {
-                gameStates[1] = GameState(
-                    levelId = 1,
-                    isUnlocked = true,
-                    rating = 3
-                )
-                saveGameStates()
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            // Initialize with first level if loading fails
-            gameStates = mutableMapOf(
-                1 to GameState(levelId = 1, isUnlocked = true, rating = 3)
-            )
+        }
+
+        ensureFirstLevelUnlocked()
+    }
+
+    private fun ensureFirstLevelUnlocked() {
+        if (!gameStates.containsKey(1)) {
+            gameStates[1] = GameState(levelId = 1, isUnlocked = true, rating = 3)
             saveGameStates()
         }
     }
 
     private fun saveGameStates() {
         try {
-            // Ensure directory exists
             gameStateFile.parentFile?.mkdirs()
-            
-            // Write the JSON with pretty printing
-            val json = gson.toJson(gameStates)
-            gameStateFile.writeText(json)
-            
-            // Debug output
-            println("Saved game states to: ${gameStateFile.absolutePath}")
-            println("Content: $json")
+            gameStateFile.writeText(gson.toJson(gameStates))
+            debugLog("Game states saved", gson.toJson(gameStates))
         } catch (e: Exception) {
             e.printStackTrace()
-            println("Failed to save game states: ${e.message}")
+            debugLog("Failed to save game states", e.message ?: "Unknown error")
         }
     }
 
@@ -65,54 +52,36 @@ class GameProgressManager(private val context: Context) {
     }
 
     fun updateGameState(levelId: Int, update: (GameState) -> GameState) {
-        val currentState = getGameState(levelId)
-        gameStates[levelId] = update(currentState)
+        gameStates[levelId] = update(getGameState(levelId))
         saveGameStates()
     }
 
     fun isLevelUnlocked(levelId: Int): Boolean {
-        return when {
-            levelId == 1 -> true  // First level always unlocked
-            gameStates.containsKey(levelId) -> gameStates[levelId]?.isUnlocked == true
-            else -> false
-        }
-    }
-
-    fun getAllGameStates(): List<GameState> {
-        return gameStates.values.toList()
+        return levelId == 1 || gameStates[levelId]?.isUnlocked == true
     }
 
     fun completeLevel(levelId: Int, rating: Int) {
-        println("Completing level $levelId with rating $rating") // Debug log
-        
-        // Mark current level as completed
-        updateGameState(levelId) { state ->
-            state.copy(
-                isCompleted = true,
-                isUnlocked = true,
-                rating = rating
-            )
-        }
-        
-        // Unlock next level
+        debugLog("Completing level", "Level $levelId with rating $rating")
+        markLevelAsCompleted(levelId, rating)
+        unlockNextLevel(levelId)
+        debugLog("Game states after level completion", gameStates.toString())
+    }
+
+    private fun markLevelAsCompleted(levelId: Int, rating: Int) {
+        updateGameState(levelId) { it.copy(isCompleted = true, isUnlocked = true, rating = rating) }
+    }
+
+    private fun unlockNextLevel(levelId: Int) {
         val nextLevelId = levelId + 1
-        updateGameState(nextLevelId) { state ->
-            state.copy(
-                isUnlocked = true,
-                rating = 0
-            )
-        }
-        
-        // Debug output
-        println("Current game states after completion:")
-        gameStates.forEach { (id, state) ->
-            println("Level $id: completed=${state.isCompleted}, unlocked=${state.isUnlocked}, rating=${state.rating}")
-        }
+        updateGameState(nextLevelId) { it.copy(isUnlocked = true, rating = 0) }
     }
 
     fun clearProgress() {
         gameStates.clear()
-        gameStates[1] = GameState(levelId = 1, isUnlocked = true, rating = 0)
-        saveGameStates()
+        ensureFirstLevelUnlocked()
     }
-} 
+
+    private fun debugLog(tag: String, message: String) {
+        println("[$tag]: $message")
+    }
+}

@@ -3,13 +3,19 @@ package com.pixelchef
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -17,7 +23,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -29,9 +34,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pixelchef.viewmodels.GameViewModel
 import com.pixelchef.models.GameState
-
+import com.pixelchef.models.Level
+import com.pixelchef.ui.components.BackButton
+import com.pixelchef.ui.components.BackgroundImage
+import com.pixelchef.viewmodels.GameViewModel
 
 @Composable
 fun LevelsScreen(
@@ -40,59 +47,55 @@ fun LevelsScreen(
     viewModel: GameViewModel = viewModel()
 ) {
     val levels = viewModel.getAllLevels()
-    
+
     // Debug output
     LaunchedEffect(Unit) {
-        println("LevelsScreen: Number of levels: ${levels.size}")
-        levels.forEach { level ->
-            println("Level ${level.id}: ${level.name} (Unlocked: ${viewModel.isLevelUnlocked(level.id)})")
-        }
+        debugLevels(levels, viewModel)
     }
-    Image(
-        painter = painterResource(id = R.drawable.gradient),
-        contentDescription = null,
-        modifier = Modifier.fillMaxSize(),
-        contentScale = ContentScale.Crop
-    )
+
+    BackgroundImage()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Back button
-        Button(
-            onClick = onBack,
-            shape = RectangleShape,
-            colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
-        ) {
-            Text("< Back", fontSize = 14.sp, color = colorResource(R.color.colorTextSecondary))
-        }
+        BackButton(onBack)
+        TitleText("Levels")
+        LevelsGrid(levels, viewModel, onSelectLevel)
+    }
+}
 
-        Text(
-            text = "Levels",
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(vertical = 16.dp)
-        )
+@Composable
+fun TitleText(title: String) {
+    Text(
+        text = title,
+        fontSize = 32.sp,
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier.padding(vertical = 16.dp)
+    )
+}
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            items(levels.size) { index ->
-                val level = levels[index]
-                val gameState = viewModel.getGameState(level.id)
-                val isUnlocked = viewModel.isLevelUnlocked(level.id)
-
-                LevelItem(
-                    levelNumber = level.id,
-                    gameState = gameState,
-                    isUnlocked = isUnlocked,
-                    image = viewModel.getDrawableId(LocalContext.current, level.image),
-                    onClick = { if (isUnlocked) onSelectLevel(level.id) }
-                )
-            }
+@Composable
+fun LevelsGrid(
+    levels: List<Level>,
+    viewModel: GameViewModel,
+    onSelectLevel: (Int) -> Unit
+) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(3),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(levels.size) { index ->
+            val level = levels[index]
+            LevelItem(
+                levelNumber = level.id,
+                gameState = viewModel.getGameState(level.id),
+                isUnlocked = viewModel.isLevelUnlocked(level.id),
+                image = viewModel.getDrawableId(LocalContext.current, level.image),
+                onClick = { if (viewModel.isLevelUnlocked(level.id)) onSelectLevel(level.id) }
+            )
         }
     }
 }
@@ -126,23 +129,28 @@ fun LevelItem(
                 .background(if (isUnlocked) Color(0x70FFFFFF) else Color(0x90000000))
         )
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        LevelInfo(levelNumber, gameState, isUnlocked)
+    }
+}
+
+@Composable
+fun LevelInfo(levelNumber: Int, gameState: GameState, isUnlocked: Boolean) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = levelNumber.toString(),
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = colorResource(if (isUnlocked) R.color.colorTextPrimary else R.color.colorTextSecondary)
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        if (!isUnlocked) {
             Text(
-                text = levelNumber.toString(),
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                color = colorResource(if(isUnlocked) R.color.colorTextPrimary else R.color.colorTextSecondary)
+                text = "Locked",
+                fontSize = 14.sp,
+                color = colorResource(R.color.colorTextSecondary)
             )
-            Spacer(modifier = Modifier.height(4.dp))
-            if (!isUnlocked) {
-                Text(
-                    text = "Locked",
-                    fontSize = 14.sp,
-                    color = colorResource(R.color.colorTextSecondary)
-                )
-            } else {
-                StarsForRating(gameState.rating)
-            }
+        } else {
+            StarsForRating(gameState.rating)
         }
     }
 }
@@ -167,4 +175,11 @@ fun StarsForRating(rating: Int) {
     }
 
     BasicText(text = starText)
+}
+
+fun debugLevels(levels: List<Level>, viewModel: GameViewModel) {
+    println("LevelsScreen: Number of levels: ${levels.size}")
+    levels.forEach { level ->
+        println("Level ${level.id}: ${level.name} (Unlocked: ${viewModel.isLevelUnlocked(level.id)})")
+    }
 }
