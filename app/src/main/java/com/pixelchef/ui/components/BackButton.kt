@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.sp
 import com.pixelchef.R
+import com.pixelchef.ui.theme.pixelatedFont
 
 @Composable
 fun BackButton(onBack: () -> Unit) {
@@ -16,6 +17,11 @@ fun BackButton(onBack: () -> Unit) {
         shape = RectangleShape,
         colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
     ) {
-        Text("< Back", fontSize = 14.sp, color = colorResource(R.color.colorTextSecondary))
+        Text(
+            "< Back",
+            fontSize = 14.sp,
+            color = colorResource(R.color.colorTextSecondary),
+            fontFamily = pixelatedFont
+        )
     }
 }

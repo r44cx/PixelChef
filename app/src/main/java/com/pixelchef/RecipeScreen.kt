@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pixelchef.models.Level
 import com.pixelchef.ui.components.BackButton
+import com.pixelchef.ui.theme.pixelatedFont
 import com.pixelchef.viewmodels.GameViewModel
 
 @Composable
@@ -70,7 +71,8 @@ fun HeaderText(title: String) {
         title,
         fontSize = 32.sp,
         fontWeight = FontWeight.Bold,
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(vertical = 16.dp),
+        fontFamily = pixelatedFont
     )
 }
 
@@ -92,7 +94,12 @@ fun RecipeCard(level: Level, isCompleted: Boolean) {
             .padding(16.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text(level.name, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Text(
+                level.name,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = pixelatedFont
+            )
             Spacer(modifier = Modifier.height(8.dp))
             RecipeDetails(level)
 
@@ -109,27 +116,47 @@ fun RecipeCard(level: Level, isCompleted: Boolean) {
 @Composable
 fun RecipeDetails(level: Level) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("Preparation: ${level.recipe.preparationTime}")
+        Text(
+            "Preparation: ${level.recipe.preparationTime}",
+            fontFamily = pixelatedFont
+        )
         Spacer(modifier = Modifier.width(16.dp))
-        Text("Difficulty: ${level.recipe.difficulty}")
+        Text(
+            "Difficulty: ${level.recipe.difficulty}",
+            fontFamily = pixelatedFont
+        )
     }
 }
 
 @Composable
 fun RecipeIngredients(level: Level) {
     Spacer(modifier = Modifier.height(16.dp))
-    Text("Required Ingredients:", fontWeight = FontWeight.Bold)
+    Text(
+        "Required Ingredients:", 
+        fontWeight = FontWeight.Bold,
+        fontFamily = pixelatedFont
+    )
     level.ingredients.filter { it.correct }.forEach { ingredient ->
-        Text("• ${ingredient.name}")
+        Text(
+            "• ${ingredient.name}",
+            fontFamily = pixelatedFont
+        )
     }
 }
 
 @Composable
 fun RecipeInstructions(level: Level) {
     Spacer(modifier = Modifier.height(16.dp))
-    Text("Instructions:", fontWeight = FontWeight.Bold)
+    Text(
+        "Instructions:", 
+        fontWeight = FontWeight.Bold,
+        fontFamily = pixelatedFont
+    )
     level.recipe.instructions.forEachIndexed { index, instruction ->
-        Text("${index + 1}. $instruction")
+        Text(
+            "${index + 1}. $instruction",
+            fontFamily = pixelatedFont
+        )
     }
 }
 
@@ -138,6 +165,7 @@ fun LockedRecipeMessage() {
     Spacer(modifier = Modifier.height(8.dp))
     Text(
         "Complete this level to unlock the recipe!",
-        color = colorResource(R.color.colorTextSecondary)
+        color = colorResource(R.color.colorTextSecondary),
+        fontFamily = pixelatedFont
     )
 }
