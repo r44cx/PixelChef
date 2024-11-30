@@ -55,29 +55,69 @@
     }
   },
   {
-    "id": 3,
-    "name": "Shrimp Tacos",
+    "id": 15,
+    "name": "Sweet Potato Fries",
     "ingredients": [
-      { "name": "Shrimp", "imageResource": "ingredients_shrimp", "correct": true },
-      { "name": "Taco Shells", "imageResource": "ingredients_taco_shells", "correct": true },
-      { "name": "Cabbage", "imageResource": "ingredients_cabbage", "correct": true },
-      { "name": "Lime", "imageResource": "ingredients_lime", "correct": true },
-      { "name": "Sour Cream", "imageResource": "ingredients_sour_cream", "correct": true },
-      { "name": "Pasta", "imageResource": "ingredients_pasta", "correct": false },
-      { "name": "Bananas", "imageResource": "ingredients_bananas", "correct": false },
-      { "name": "Mushrooms", "imageResource": "ingredients_mushrooms", "correct": false },
-      { "name": "Spinach", "imageResource": "ingredients_spinach", "correct": false },
-      { "name": "Bread", "imageResource": "ingredients_bread", "correct": false }
+      {
+        "name": "Sweet Potatoes",
+        "imageResource": "ingredients_sweet_potatoes",
+        "correct": true
+      },
+      {
+        "name": "Olive Oil",
+        "imageResource": "ingredients_olive_oil",
+        "correct": true
+      },
+      {
+        "name": "Paprika",
+        "imageResource": "ingredients_paprika",
+        "correct": true
+      },
+      {
+        "name": "Salt",
+        "imageResource": "ingredients_salt",
+        "correct": true
+      },
+      {
+        "name": "Pepper",
+        "imageResource": "ingredients_pepper",
+        "correct": true
+      },
+      {
+        "name": "Cheese",
+        "imageResource": "ingredients_cheese",
+        "correct": false
+      },
+      {
+        "name": "Beef",
+        "imageResource": "ingredients_beef",
+        "correct": false
+      },
+      {
+        "name": "Tomatoes",
+        "imageResource": "ingredients_tomatoes",
+        "correct": false
+      },
+      {
+        "name": "Bananas",
+        "imageResource": "ingredients_bananas",
+        "correct": false
+      },
+      {
+        "name": "Rice",
+        "imageResource": "ingredients_rice",
+        "correct": false
+      }
     ],
-    "image": "meals_shrimp_tacos",
+    "image": "meals_sweet_potato_fries",
     "recipe": {
-      "description": "Light and flavorful tacos with shrimp and slaw.",
-      "preparationTime": "15 min",
+      "description": "Crispy baked sweet potato fries with paprika.",
+      "preparationTime": "30 min",
       "difficulty": "Easy",
       "instructions": [
-        "Cook shrimp with your preferred seasoning.",
-        "Prepare slaw by mixing cabbage with lime juice.",
-        "Assemble shrimp, slaw, and sour cream in taco shells."
+        "Peel and cut sweet potatoes into fries.",
+        "Toss with olive oil, paprika, salt, and pepper.",
+        "Bake at 200\u00b0C for 25 minutes until crispy."
       ]
     }
   },
@@ -380,71 +420,30 @@
         ]
     }
 },
-
-  {
+{
     "id": 15,
-    "name": "Sweet Potato Fries",
+    "name": "Shrimp Tacos",
     "ingredients": [
-      {
-        "name": "Sweet Potatoes",
-        "imageResource": "ingredients_sweet_potatoes",
-        "correct": true
-      },
-      {
-        "name": "Olive Oil",
-        "imageResource": "ingredients_olive_oil",
-        "correct": true
-      },
-      {
-        "name": "Paprika",
-        "imageResource": "ingredients_paprika",
-        "correct": true
-      },
-      {
-        "name": "Salt",
-        "imageResource": "ingredients_salt",
-        "correct": true
-      },
-      {
-        "name": "Pepper",
-        "imageResource": "ingredients_pepper",
-        "correct": true
-      },
-      {
-        "name": "Cheese",
-        "imageResource": "ingredients_cheese",
-        "correct": false
-      },
-      {
-        "name": "Beef",
-        "imageResource": "ingredients_beef",
-        "correct": false
-      },
-      {
-        "name": "Tomatoes",
-        "imageResource": "ingredients_tomatoes",
-        "correct": false
-      },
-      {
-        "name": "Bananas",
-        "imageResource": "ingredients_bananas",
-        "correct": false
-      },
-      {
-        "name": "Rice",
-        "imageResource": "ingredients_rice",
-        "correct": false
-      }
+      { "name": "Shrimp", "imageResource": "ingredients_shrimp", "correct": true },
+      { "name": "Taco Shells", "imageResource": "ingredients_taco_shells", "correct": true },
+      { "name": "Cabbage", "imageResource": "ingredients_cabbage", "correct": true },
+      { "name": "Lime", "imageResource": "ingredients_lime", "correct": true },
+      { "name": "Sour Cream", "imageResource": "ingredients_sour_cream", "correct": true },
+      { "name": "Pasta", "imageResource": "ingredients_pasta", "correct": false },
+      { "name": "Bananas", "imageResource": "ingredients_bananas", "correct": false },
+      { "name": "Mushrooms", "imageResource": "ingredients_mushrooms", "correct": false },
+      { "name": "Spinach", "imageResource": "ingredients_spinach", "correct": false },
+      { "name": "Bread", "imageResource": "ingredients_bread", "correct": false }
     ],
-    "image": "meals_sweet_potato_fries",
+    "image": "meals_shrimp_tacos",
     "recipe": {
-      "description": "Crispy baked sweet potato fries with paprika.",
-      "preparationTime": "30 min",
+      "description": "Light and flavorful tacos with shrimp and slaw.",
+      "preparationTime": "15 min",
       "difficulty": "Easy",
       "instructions": [
-        "Peel and cut sweet potatoes into fries.",
-        "Toss with olive oil, paprika, salt, and pepper.",
-        "Bake at 200\u00b0C for 25 minutes until crispy."
+        "Cook shrimp with your preferred seasoning.",
+        "Prepare slaw by mixing cabbage with lime juice.",
+        "Assemble shrimp, slaw, and sour cream in taco shells."
       ]
     }
   }
