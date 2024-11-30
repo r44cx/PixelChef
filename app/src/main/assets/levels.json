@@ -1,341 +1,450 @@
 [
   {
     "id": 1,
-    "name": "Simple Salad",
+    "name": "Spaghetti Aglio e Olio",
     "ingredients": [
-      {
-        "name": "Lettuce",
-        "imageResource": "ingredients_lettuce",
-        "correct": true
-      },
-      {
-        "name": "Tomato", 
-        "imageResource": "ingredients_tomato",
-        "correct": true
-      },
-      {
-        "name": "Cucumber",
-        "imageResource": "ingredients_cucumber",
-        "correct": true
-      },
-      {
-        "name": "Carrot",
-        "imageResource": "ingredients_carrot",
-        "correct": false
-      },
-      {
-        "name": "Onion",
-        "imageResource": "ingredients_onion",
-        "correct": false
-      }
+      { "name": "Spaghetti", "imageResource": "ingredients_spaghetti", "correct": true },
+      { "name": "Garlic", "imageResource": "ingredients_garlic", "correct": true },
+      { "name": "Olive Oil", "imageResource": "ingredients_olive_oil", "correct": true },
+      { "name": "Parsley", "imageResource": "ingredients_parsley", "correct": true },
+      { "name": "Chili Flakes", "imageResource": "ingredients_chili_flakes", "correct": true },
+      { "name": "Cheese", "imageResource": "ingredients_cheese", "correct": false },
+      { "name": "Chicken", "imageResource": "ingredients_chicken", "correct": false },
+      { "name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": false },
+      { "name": "Rice", "imageResource": "ingredients_rice", "correct": false },
+      { "name": "Cucumber", "imageResource": "ingredients_cucumber", "correct": false }
     ],
-    "image": "meals_meal1",
+    "image": "meals_spaghetti_aglio_e_olio",
     "recipe": {
-      "description": "A fresh and crispy salad",
-      "preparationTime": "10 min",
+      "description": "A simple Italian pasta dish with garlic and olive oil.",
+      "preparationTime": "15 min",
       "difficulty": "Easy",
       "instructions": [
-        "Wash all vegetables thoroughly",
-        "Cut the lettuce into bite-sized pieces",
-        "Slice tomatoes and cucumbers",
-        "Mix all ingredients in a bowl",
-        "Season to taste"
+        "Cook spaghetti in salted boiling water until al dente.",
+        "Sauté garlic in olive oil over low heat.",
+        "Add chili flakes and toss with cooked spaghetti.",
+        "Garnish with parsley before serving."
       ]
     }
   },
   {
     "id": 2,
-    "name": "Margherita Pizza",
+    "name": "Chicken Stir-Fry",
     "ingredients": [
-      {
-        "name": "Pizza Dough",
-        "imageResource": "ingredients_dough",
-        "correct": true
-      },
-      {
-        "name": "Tomato Sauce",
-        "imageResource": "ingredients_tomato_sauce",
-        "correct": true
-      },
-      {
-        "name": "Mozzarella",
-        "imageResource": "ingredients_mozzarella",
-        "correct": true
-      },
-      {
-        "name": "Basil",
-        "imageResource": "ingredients_basil",
-        "correct": true
-      },
-      {
-        "name": "Pepperoni",
-        "imageResource": "ingredients_pepperoni",
-        "correct": false
-      },
-      {
-        "name": "Mushrooms",
-        "imageResource": "ingredients_mushrooms",
-        "correct": false
-      }
+      { "name": "Chicken", "imageResource": "ingredients_chicken", "correct": true },
+      { "name": "Soy Sauce", "imageResource": "ingredients_soy_sauce", "correct": true },
+      { "name": "Bell Peppers", "imageResource": "ingredients_bell_peppers", "correct": true },
+      { "name": "Broccoli", "imageResource": "ingredients_broccoli", "correct": true },
+      { "name": "Garlic", "imageResource": "ingredients_garlic", "correct": true },
+      { "name": "Pasta", "imageResource": "ingredients_pasta", "correct": false },
+      { "name": "Cheese", "imageResource": "ingredients_cheese", "correct": false },
+      { "name": "Potatoes", "imageResource": "ingredients_potatoes", "correct": false },
+      { "name": "Spinach", "imageResource": "ingredients_spinach", "correct": false },
+      { "name": "Cream", "imageResource": "ingredients_cream", "correct": false }
     ],
-    "image": "meals_meal1",
+    "image": "meals_chicken_stir_fry",
     "recipe": {
-      "description": "Classic Italian pizza with fresh ingredients",
-      "preparationTime": "30 min",
+      "description": "A quick and healthy stir-fry dish with chicken and vegetables.",
+      "preparationTime": "20 min",
       "difficulty": "Medium",
       "instructions": [
-        "Roll out the pizza dough",
-        "Spread tomato sauce evenly",
-        "Add sliced mozzarella",
-        "Bake at 220°C for 15 minutes",
-        "Add fresh basil leaves"
+        "Cut chicken into bite-sized pieces and cook until browned.",
+        "Add chopped vegetables and stir-fry until tender-crisp.",
+        "Mix in soy sauce and garlic, then serve hot."
       ]
     }
   },
   {
     "id": 3,
-    "name": "Chicken Stir Fry",
+    "name": "Shrimp Tacos",
     "ingredients": [
-      {
-        "name": "Chicken",
-        "imageResource": "ingredients_chicken",
-        "correct": true
-      },
-      {
-        "name": "Bell Peppers",
-        "imageResource": "ingredients_bell_peppers",
-        "correct": true
-      },
-      {
-        "name": "Soy Sauce",
-        "imageResource": "ingredients_soy_sauce",
-        "correct": true
-      },
-      {
-        "name": "Rice",
-        "imageResource": "ingredients_rice",
-        "correct": true
-      },
-      {
-        "name": "Broccoli",
-        "imageResource": "ingredients_broccoli",
-        "correct": true
-      },
-      {
-        "name": "Pasta",
-        "imageResource": "ingredients_pasta",
-        "correct": false
-      },
-      {
-        "name": "Cheese",
-        "imageResource": "ingredients_cheese",
-        "correct": false
-      }
+      { "name": "Shrimp", "imageResource": "ingredients_shrimp", "correct": true },
+      { "name": "Taco Shells", "imageResource": "ingredients_taco_shells", "correct": true },
+      { "name": "Cabbage", "imageResource": "ingredients_cabbage", "correct": true },
+      { "name": "Lime", "imageResource": "ingredients_lime", "correct": true },
+      { "name": "Sour Cream", "imageResource": "ingredients_sour_cream", "correct": true },
+      { "name": "Pasta", "imageResource": "ingredients_pasta", "correct": false },
+      { "name": "Bananas", "imageResource": "ingredients_bananas", "correct": false },
+      { "name": "Mushrooms", "imageResource": "ingredients_mushrooms", "correct": false },
+      { "name": "Spinach", "imageResource": "ingredients_spinach", "correct": false },
+      { "name": "Bread", "imageResource": "ingredients_bread", "correct": false }
     ],
-    "image": "meals_meal1",
+    "image": "meals_shrimp_tacos",
     "recipe": {
-      "description": "A quick and flavorful Asian stir fry",
-      "preparationTime": "25 min",
-      "difficulty": "Medium",
+      "description": "Light and flavorful tacos with shrimp and slaw.",
+      "preparationTime": "15 min",
+      "difficulty": "Easy",
       "instructions": [
-        "Cook rice according to package instructions",
-        "Cut chicken into bite-sized pieces",
-        "Stir-fry chicken until golden",
-        "Add vegetables and sauce",
-        "Serve hot over rice"
+        "Cook shrimp with your preferred seasoning.",
+        "Prepare slaw by mixing cabbage with lime juice.",
+        "Assemble shrimp, slaw, and sour cream in taco shells."
       ]
     }
   },
   {
     "id": 4,
-    "name": "Sushi Roll",
+    "name": "Baked Salmon with Asparagus",
     "ingredients": [
-      {
-        "name": "Sushi Rice",
-        "imageResource": "ingredients_sushi_rice",
-        "correct": true
-      },
-      {
-        "name": "Nori",
-        "imageResource": "ingredients_nori",
-        "correct": true
-      },
-      {
-        "name": "Salmon",
-        "imageResource": "ingredients_salmon",
-        "correct": true
-      },
-      {
-        "name": "Avocado",
-        "imageResource": "ingredients_avocado",
-        "correct": true
-      },
-      {
-        "name": "Cucumber",
-        "imageResource": "ingredients_cucumber",
-        "correct": true
-      },
-      {
-        "name": "Wasabi",
-        "imageResource": "ingredients_wasabi",
-        "correct": true
-      },
-      {
-        "name": "Tomato",
-        "imageResource": "ingredients_tomato",
-        "correct": false
-      },
-      {
-        "name": "Lettuce",
-        "imageResource": "ingredients_lettuce",
-        "correct": false
-      }
+      { "name": "Salmon", "imageResource": "ingredients_salmon", "correct": true },
+      { "name": "Asparagus", "imageResource": "ingredients_asparagus", "correct": true },
+      { "name": "Olive Oil", "imageResource": "ingredients_olive_oil", "correct": true },
+      { "name": "Garlic", "imageResource": "ingredients_garlic", "correct": true },
+      { "name": "Lemon", "imageResource": "ingredients_lemon", "correct": true },
+      { "name": "Rice", "imageResource": "ingredients_rice", "correct": false },
+      { "name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": false },
+      { "name": "Bananas", "imageResource": "ingredients_bananas", "correct": false },
+      { "name": "Cheese", "imageResource": "ingredients_cheese", "correct": false },
+      { "name": "Beef", "imageResource": "ingredients_beef", "correct": false }
     ],
-    "image": "meals_meal1",
+    "image": "meals_baked_salmon",
     "recipe": {
-      "description": "Classic Japanese sushi roll",
-      "preparationTime": "45 min",
-      "difficulty": "Hard",
+      "description": "A healthy and easy baked salmon dish with asparagus.",
+      "preparationTime": "25 min",
+      "difficulty": "Easy",
       "instructions": [
-        "Cook and season sushi rice",
-        "Place nori on bamboo mat",
-        "Spread rice on nori",
-        "Add fish and vegetables",
-        "Roll tightly and slice"
+        "Season salmon and asparagus with olive oil, garlic, and lemon.",
+        "Bake together at 200°C for 15 minutes.",
+        "Serve immediately."
       ]
     }
   },
   {
     "id": 5,
-    "name": "Beef Wellington",
+    "name": "Shrimp Tacos",
+    "ingredients": [
+        {"name": "Shrimp", "imageResource": "ingredients_shrimp", "correct": true},
+        {"name": "Taco Shells", "imageResource": "ingredients_taco_shells", "correct": true},
+        {"name": "Cabbage Slaw", "imageResource": "ingredients_cabbage_slaw", "correct": true},
+        {"name": "Lime", "imageResource": "ingredients_lime", "correct": true},
+        {"name": "Sour Cream", "imageResource": "ingredients_sour_cream", "correct": true},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Beef", "imageResource": "ingredients_beef", "correct": false},
+        {"name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": false},
+        {"name": "Rice", "imageResource": "ingredients_rice", "correct": false},
+        {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false}
+    ],
+    "image": "meals_shrimp_tacos",
+    "recipe": {
+        "description": "Light and fresh shrimp tacos with lime and slaw.",
+        "preparationTime": "15 min",
+        "difficulty": "Easy",
+        "instructions": [
+            "Cook shrimp with seasoning.",
+            "Assemble tacos with shrimp, slaw, and sour cream.",
+            "Squeeze lime on top before serving."
+        ]
+    }
+  },
+  {
+      "id": 6,
+      "name": "Vegetable Frittata",
+      "ingredients": [
+          {"name": "Eggs", "imageResource": "ingredients_eggs", "correct": true},
+          {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": true},
+          {"name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": true},
+          {"name": "Onions", "imageResource": "ingredients_onions", "correct": true},
+          {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": true},
+          {"name": "Chicken", "imageResource": "ingredients_chicken", "correct": false},
+          {"name": "Shrimp", "imageResource": "ingredients_shrimp", "correct": false},
+          {"name": "Beef", "imageResource": "ingredients_beef", "correct": false},
+          {"name": "Pasta", "imageResource": "ingredients_pasta", "correct": false},
+          {"name": "Rice", "imageResource": "ingredients_rice", "correct": false}
+      ],
+      "image": "meals_vegetable_frittata",
+      "recipe": {
+          "description": "A healthy vegetable frittata for breakfast or brunch.",
+          "preparationTime": "20 min",
+          "difficulty": "Easy",
+          "instructions": [
+              "Whisk eggs and pour into a heated skillet.",
+              "Add sautéed vegetables and cheese.",
+              "Cook on low heat until set."
+          ]
+      }
+  },
+  {
+    "id": 7,
+    "name": "Beef and Broccoli",
+    "ingredients": [
+        {"name": "Beef Strips", "imageResource": "ingredients_beef_strips", "correct": true},
+        {"name": "Broccoli", "imageResource": "ingredients_broccoli", "correct": true},
+        {"name": "Soy Sauce", "imageResource": "ingredients_soy_sauce", "correct": true},
+        {"name": "Garlic", "imageResource": "ingredients_garlic", "correct": true},
+        {"name": "Ginger", "imageResource": "ingredients_ginger", "correct": true},
+        {"name": "Chicken", "imageResource": "ingredients_chicken", "correct": false},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Rice", "imageResource": "ingredients_rice", "correct": false},
+        {"name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": false},
+        {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false}
+    ],
+    "image": "meals_beef_and_broccoli",
+    "recipe": {
+        "description": "A quick and delicious stir-fry with beef and broccoli.",
+        "preparationTime": "25 min",
+        "difficulty": "Easy",
+        "instructions": [
+            "Cook beef strips until browned.",
+            "Add broccoli and stir-fry until tender-crisp.",
+            "Mix in soy sauce, garlic, and ginger. Serve hot."
+        ]
+    }
+},
+{
+    "id": 8,
+    "name": "Sweet Potato Buddha Bowl",
+    "ingredients": [
+        {"name": "Sweet Potato", "imageResource": "ingredients_sweet_potato", "correct": true},
+        {"name": "Chickpeas", "imageResource": "ingredients_chickpeas", "correct": true},
+        {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": true},
+        {"name": "Tahini Dressing", "imageResource": "ingredients_tahini_dressing", "correct": true},
+        {"name": "Quinoa", "imageResource": "ingredients_quinoa", "correct": true},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Beef", "imageResource": "ingredients_beef", "correct": false},
+        {"name": "Pasta", "imageResource": "ingredients_pasta", "correct": false},
+        {"name": "Rice", "imageResource": "ingredients_rice", "correct": false},
+        {"name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": false}
+    ],
+    "image": "meals_sweet_potato_bowl",
+    "recipe": {
+        "description": "A nutritious bowl with sweet potatoes, chickpeas, and quinoa.",
+        "preparationTime": "30 min",
+        "difficulty": "Easy",
+        "instructions": [
+            "Roast sweet potatoes and chickpeas.",
+            "Cook quinoa and layer in a bowl with spinach.",
+            "Top with tahini dressing."
+        ]
+    }
+},
+{
+    "id": 9,
+    "name": "Pad Thai",
+    "ingredients": [
+        {"name": "Rice Noodles", "imageResource": "ingredients_rice_noodles", "correct": true},
+        {"name": "Shrimp", "imageResource": "ingredients_shrimp", "correct": true},
+        {"name": "Peanuts", "imageResource": "ingredients_peanuts", "correct": true},
+        {"name": "Eggs", "imageResource": "ingredients_eggs", "correct": true},
+        {"name": "Pad Thai Sauce", "imageResource": "ingredients_pad_thai_sauce", "correct": true},
+        {"name": "Beef", "imageResource": "ingredients_beef", "correct": false},
+        {"name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": false},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Pasta", "imageResource": "ingredients_pasta", "correct": false},
+        {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": false}
+    ],
+    "image": "meals_pad_thai",
+    "recipe": {
+        "description": "A classic Thai noodle dish with shrimp and peanuts.",
+        "preparationTime": "30 min",
+        "difficulty": "Medium",
+        "instructions": [
+            "Cook rice noodles and set aside.",
+            "Stir-fry shrimp and scrambled eggs.",
+            "Add noodles and Pad Thai sauce, mix well. Top with peanuts."
+        ]
+    }
+  },
+  {
+    "id": 10,
+    "name": "Chili Con Carne",
+    "ingredients": [
+        {"name": "Ground Beef", "imageResource": "ingredients_ground_beef", "correct": true},
+        {"name": "Kidney Beans", "imageResource": "ingredients_kidney_beans", "correct": true},
+        {"name": "Tomato Sauce", "imageResource": "ingredients_tomato_sauce", "correct": true},
+        {"name": "Onions", "imageResource": "ingredients_onions", "correct": true},
+        {"name": "Spices", "imageResource": "ingredients_spices", "correct": true},
+        {"name": "Chicken", "imageResource": "ingredients_chicken", "correct": false},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Rice", "imageResource": "ingredients_rice", "correct": false},
+        {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": false},
+        {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false}
+    ],
+    "image": "meals_chili_con_carne",
+    "recipe": {
+        "description": "A hearty chili with ground beef and beans.",
+        "preparationTime": "40 min",
+        "difficulty": "Medium",
+        "instructions": [
+            "Brown the ground beef with onions.",
+            "Add kidney beans, tomato sauce, and spices.",
+            "Simmer for 30 minutes and serve hot."
+        ]
+    }
+  },
+  { 
+    "id": 11,
+    "name": "Creamy Mushroom Risotto",
+    "ingredients": [
+        {"name": "Arborio Rice", "imageResource": "ingredients_arborio_rice", "correct": true},
+        {"name": "Mushrooms", "imageResource": "ingredients_mushrooms", "correct": true},
+        {"name": "Broth", "imageResource": "ingredients_broth", "correct": true},
+        {"name": "Parmesan Cheese", "imageResource": "ingredients_parmesan", "correct": true},
+        {"name": "White Wine", "imageResource": "ingredients_white_wine", "correct": true},
+        {"name": "Chicken", "imageResource": "ingredients_chicken", "correct": false},
+        {"name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": false},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": false},
+        {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false}
+    ],
+    "image": "meals_mushroom_risotto",
+    "recipe": {
+        "description": "A creamy and comforting mushroom risotto.",
+        "preparationTime": "45 min",
+        "difficulty": "Medium",
+        "instructions": [
+            "Sauté mushrooms in butter.",
+            "Add Arborio rice and toast lightly.",
+            "Slowly add broth and stir until absorbed.",
+            "Finish with Parmesan cheese."
+        ]
+    }
+},
+{
+    "id": 12,
+    "name": "Spinach and Ricotta Stuffed Shells",
+    "ingredients": [
+        {"name": "Pasta Shells", "imageResource": "ingredients_pasta_shells", "correct": true},
+        {"name": "Ricotta Cheese", "imageResource": "ingredients_ricotta_cheese", "correct": true},
+        {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": true},
+        {"name": "Marinara Sauce", "imageResource": "ingredients_marinara_sauce", "correct": true},
+        {"name": "Mozzarella", "imageResource": "ingredients_mozzarella", "correct": true},
+        {"name": "Beef", "imageResource": "ingredients_beef", "correct": false},
+        {"name": "Shrimp", "imageResource": "ingredients_shrimp", "correct": false},
+        {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Potatoes", "imageResource": "ingredients_potatoes", "correct": false}
+    ],
+    "image": "meals_stuffed_shells",
+    "recipe": {
+        "description": "Pasta shells stuffed with creamy ricotta and spinach.",
+        "preparationTime": "50 min",
+        "difficulty": "Medium",
+        "instructions": [
+            "Cook pasta shells until al dente.",
+            "Mix ricotta and spinach for the filling.",
+            "Stuff shells and place in a baking dish with marinara sauce.",
+            "Top with mozzarella and bake."
+        ]
+    }
+},
+{
+    "id": 13,
+    "name": "Beef Stroganoff",
+    "ingredients": [
+        {"name": "Beef Strips", "imageResource": "ingredients_beef_strips", "correct": true},
+        {"name": "Sour Cream", "imageResource": "ingredients_sour_cream", "correct": true},
+        {"name": "Mushrooms", "imageResource": "ingredients_mushrooms", "correct": true},
+        {"name": "Onions", "imageResource": "ingredients_onions", "correct": true},
+        {"name": "Pasta", "imageResource": "ingredients_pasta", "correct": true},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Chicken", "imageResource": "ingredients_chicken", "correct": false},
+        {"name": "Tomatoes", "imageResource": "ingredients_tomatoes", "correct": false},
+        {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false},
+        {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": false}
+    ],
+    "image": "meals_beef_stroganoff",
+    "recipe": {
+        "description": "A rich and creamy beef stroganoff served with pasta.",
+        "preparationTime": "40 min",
+        "difficulty": "Medium",
+        "instructions": [
+            "Cook beef strips and mushrooms with onions.",
+            "Add sour cream to create the sauce.",
+            "Serve over cooked pasta."
+        ]
+    }
+},
+{
+    "id": 14,
+    "name": "Homemade Pizza",
+    "ingredients": [
+        {"name": "Pizza Dough", "imageResource": "ingredients_pizza_dough", "correct": true},
+        {"name": "Tomato Sauce", "imageResource": "ingredients_tomato_sauce", "correct": true},
+        {"name": "Mozzarella", "imageResource": "ingredients_mozzarella", "correct": true},
+        {"name": "Basil", "imageResource": "ingredients_basil", "correct": true},
+        {"name": "Olive Oil", "imageResource": "ingredients_olive_oil", "correct": true},
+        {"name": "Shrimp", "imageResource": "ingredients_shrimp", "correct": false},
+        {"name": "Rice", "imageResource": "ingredients_rice", "correct": false},
+        {"name": "Bananas", "imageResource": "ingredients_bananas", "correct": false},
+        {"name": "Cheese", "imageResource": "ingredients_cheese", "correct": false},
+        {"name": "Spinach", "imageResource": "ingredients_spinach", "correct": false}
+    ],
+    "image": "meals_homemade_pizza",
+    "recipe": {
+        "description": "A classic homemade pizza with fresh ingredients.",
+        "preparationTime": "45 min",
+        "difficulty": "Medium",
+        "instructions": [
+            "Roll out the pizza dough.",
+            "Spread tomato sauce and top with mozzarella.",
+            "Bake at 220°C for 15 minutes. Add basil before serving."
+        ]
+    }
+},
+
+  {
+    "id": 15,
+    "name": "Sweet Potato Fries",
     "ingredients": [
       {
-        "name": "Beef Tenderloin",
-        "imageResource": "ingredients_beef",
+        "name": "Sweet Potatoes",
+        "imageResource": "ingredients_sweet_potatoes",
         "correct": true
       },
       {
-        "name": "Puff Pastry",
-        "imageResource": "ingredients_puff_pastry",
+        "name": "Olive Oil",
+        "imageResource": "ingredients_olive_oil",
         "correct": true
       },
       {
-        "name": "Mushrooms",
-        "imageResource": "ingredients_mushrooms",
+        "name": "Paprika",
+        "imageResource": "ingredients_paprika",
         "correct": true
       },
       {
-        "name": "Prosciutto",
-        "imageResource": "ingredients_prosciutto",
+        "name": "Salt",
+        "imageResource": "ingredients_salt",
         "correct": true
       },
       {
-        "name": "Dijon Mustard",
-        "imageResource": "ingredients_mustard",
+        "name": "Pepper",
+        "imageResource": "ingredients_pepper",
         "correct": true
-      },
-      {
-        "name": "Egg Wash",
-        "imageResource": "ingredients_egg",
-        "correct": true
-      },
-      {
-        "name": "Chicken",
-        "imageResource": "ingredients_chicken",
-        "correct": false
-      },
-      {
-        "name": "Tomato Sauce",
-        "imageResource": "ingredients_tomato_sauce",
-        "correct": false
       },
       {
         "name": "Cheese",
         "imageResource": "ingredients_cheese",
         "correct": false
-      }
-    ],
-    "image": "meals_meal1",
-    "recipe": {
-      "description": "Elegant and complex beef dish",
-      "preparationTime": "2 hours",
-      "difficulty": "Expert",
-      "instructions": [
-        "Sear the beef tenderloin",
-        "Prepare mushroom duxelles",
-        "Wrap beef in prosciutto",
-        "Encase in puff pastry",
-        "Bake until golden brown"
-      ]
-    }
-  },
-  {
-    "id": 6,
-    "name": "French Macarons",
-    "ingredients": [
-      {
-        "name": "Almond Flour",
-        "imageResource": "ingredients_almond_flour",
-        "correct": true
       },
       {
-        "name": "Powdered Sugar",
-        "imageResource": "ingredients_powdered_sugar",
-        "correct": true
-      },
-      {
-        "name": "Egg Whites",
-        "imageResource": "ingredients_egg_whites",
-        "correct": true
-      },
-      {
-        "name": "Granulated Sugar",
-        "imageResource": "ingredients_sugar",
-        "correct": true
-      },
-      {
-        "name": "Food Coloring",
-        "imageResource": "ingredients_food_coloring",
-        "correct": true
-      },
-      {
-        "name": "Butter",
-        "imageResource": "ingredients_butter",
-        "correct": true
-      },
-      {
-        "name": "Vanilla Extract",
-        "imageResource": "ingredients_vanilla",
-        "correct": true
-      },
-      {
-        "name": "Flour",
-        "imageResource": "ingredients_flour",
+        "name": "Beef",
+        "imageResource": "ingredients_beef",
         "correct": false
       },
       {
-        "name": "Yeast",
-        "imageResource": "ingredients_yeast",
+        "name": "Tomatoes",
+        "imageResource": "ingredients_tomatoes",
         "correct": false
       },
       {
-        "name": "Milk",
-        "imageResource": "ingredients_milk",
+        "name": "Bananas",
+        "imageResource": "ingredients_bananas",
+        "correct": false
+      },
+      {
+        "name": "Rice",
+        "imageResource": "ingredients_rice",
         "correct": false
       }
     ],
-    "image": "meals_meal1",
+    "image": "meals_sweet_potato_fries",
     "recipe": {
-      "description": "Delicate French almond meringue cookies",
-      "preparationTime": "3 hours",
-      "difficulty": "Master",
+      "description": "Crispy baked sweet potato fries with paprika.",
+      "preparationTime": "30 min",
+      "difficulty": "Easy",
       "instructions": [
-        "Sift almond flour and powdered sugar",
-        "Make French meringue",
-        "Macaronage the batter",
-        "Pipe and rest shells",
-        "Bake at precise temperature",
-        "Fill with buttercream"
+        "Peel and cut sweet potatoes into fries.",
+        "Toss with olive oil, paprika, salt, and pepper.",
+        "Bake at 200\u00b0C for 25 minutes until crispy."
       ]
     }
   }

@@ -80,7 +80,7 @@ fun GameScreen(
             .padding(16.dp)
     ) {
         BackButton(onBack)
-        RecipeImage(currentLevel)
+        RecipeImage(currentLevel, viewModel)
         RecipeDetails(currentLevel, viewModel)
         IngredientsGrid(
             currentLevel,
@@ -102,7 +102,7 @@ fun GameScreen(
 }
 
 @Composable
-private fun RecipeImage(currentLevel: Level?) {
+private fun RecipeImage(currentLevel: Level?, viewModel: GameViewModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -113,7 +113,7 @@ private fun RecipeImage(currentLevel: Level?) {
     ) {
         currentLevel?.let {
             Image(
-                painter = painterResource(id = R.drawable.meals_meal1),
+                painter = painterResource(id = viewModel.getDrawableId(LocalContext.current, currentLevel.image)),
                 contentDescription = it.name,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
@@ -212,8 +212,7 @@ fun IngredientItem(
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .width(150.dp)
-                        .padding(8.dp),
+                        .width(150.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -227,9 +226,8 @@ fun IngredientItem(
                     painter = painterResource(id = imageResId),
                     contentDescription = ingredient.name,
                     modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp),
-                    contentScale = ContentScale.Fit
+                        .weight(1f),
+                    contentScale = ContentScale.Crop
                 )
             }
         }
