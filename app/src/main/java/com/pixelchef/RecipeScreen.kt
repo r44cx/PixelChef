@@ -22,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -96,9 +97,10 @@ fun RecipeCard(level: Level, isCompleted: Boolean) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 level.name,
-                fontSize = 20.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
-                fontFamily = pixelatedFont
+                fontFamily = pixelatedFont,
+                textDecoration = TextDecoration.Underline
             )
             Spacer(modifier = Modifier.height(8.dp))
             RecipeDetails(level)
@@ -118,12 +120,15 @@ fun RecipeDetails(level: Level) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
             "Preparation: ${level.recipe.preparationTime}",
-            fontFamily = pixelatedFont
+            fontFamily = pixelatedFont,
+            fontSize = 12.sp
         )
-        Spacer(modifier = Modifier.width(16.dp))
+    }
+    Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
             "Difficulty: ${level.recipe.difficulty}",
-            fontFamily = pixelatedFont
+            fontFamily = pixelatedFont,
+            fontSize = 12.sp
         )
     }
 }
@@ -134,12 +139,14 @@ fun RecipeIngredients(level: Level) {
     Text(
         "Required Ingredients:", 
         fontWeight = FontWeight.Bold,
-        fontFamily = pixelatedFont
+        fontFamily = pixelatedFont,
+        fontSize = 14.sp
     )
     level.ingredients.filter { it.correct }.forEach { ingredient ->
         Text(
             "• ${ingredient.name}",
-            fontFamily = pixelatedFont
+            fontFamily = pixelatedFont,
+            fontSize = 12.sp
         )
     }
 }
@@ -150,12 +157,14 @@ fun RecipeInstructions(level: Level) {
     Text(
         "Instructions:", 
         fontWeight = FontWeight.Bold,
-        fontFamily = pixelatedFont
+        fontFamily = pixelatedFont,
+        fontSize = 14.sp
     )
     level.recipe.instructions.forEachIndexed { index, instruction ->
         Text(
             "${index + 1}. $instruction",
-            fontFamily = pixelatedFont
+            fontFamily = pixelatedFont,
+            fontSize = 12.sp
         )
     }
 }
@@ -166,6 +175,7 @@ fun LockedRecipeMessage() {
     Text(
         "Complete this level to unlock the recipe!",
         color = colorResource(R.color.colorTextSecondary),
-        fontFamily = pixelatedFont
+        fontFamily = pixelatedFont,
+        fontSize = 12.sp,
     )
 }

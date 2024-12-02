@@ -127,23 +127,35 @@ private fun RecipeImage(currentLevel: Level?, viewModel: GameViewModel) {
 private fun RecipeDetails(currentLevel: Level?, viewModel: GameViewModel) {
     Column(
         modifier = Modifier
-            .padding(vertical = 16.dp)
+            .padding(vertical = 12.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = currentLevel?.name.orEmpty(),
-            fontSize = 24.sp,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = pixelatedFont
         )
-        Text(
-            text = "Correct: ${viewModel.getCorrectSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()} " +
-                    "Failure: ${viewModel.getWrongSelectedIngredientsCount()}/${GameConstants.MAX_WRONG_INGREDIENTS}",
-            fontSize = 16.sp,
-            color = Color.Gray,
-            fontFamily = pixelatedFont
-        )
+        
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Correct: ${viewModel.getCorrectSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()}",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                fontFamily = pixelatedFont
+            )
+            Spacer(modifier = Modifier.width(24.dp))
+            Text(
+                text = "Wrong: ${viewModel.getWrongSelectedIngredientsCount()}/${GameConstants.MAX_WRONG_INGREDIENTS}",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                fontFamily = pixelatedFont
+            )
+        }
     }
 }
 
@@ -220,7 +232,7 @@ fun IngredientItem(
                 ) {
                     Text(
                         text = ingredient.name.first().toString(),
-                        fontSize = 48.sp,
+                        fontSize = 32.sp,
                         fontWeight = FontWeight.Bold,
                         fontFamily = pixelatedFont
                     )
@@ -278,7 +290,7 @@ fun MessageOverlay(correct: Boolean, onDismiss: () -> Unit) {
     ) {
         Box(
             modifier = Modifier
-                .size(200.dp)
+                .size(280.dp)
                 .background(Color.White, RoundedCornerShape(16.dp))
                 .padding(16.dp),
             contentAlignment = Alignment.Center
@@ -297,7 +309,8 @@ fun MessageOverlay(correct: Boolean, onDismiss: () -> Unit) {
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth(),
-                    fontFamily = pixelatedFont
+                    fontFamily = pixelatedFont,
+                    softWrap = false
                 )
             }
         }
@@ -374,7 +387,8 @@ fun DialogBox(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = titleColor,
-                fontFamily = pixelatedFont
+                fontFamily = pixelatedFont,
+                textAlign = TextAlign.Center
             )
             content()
         }

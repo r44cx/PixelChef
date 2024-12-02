@@ -57,7 +57,8 @@ fun SettingsTitle() {
         text = "Settings",
         fontSize = 32.sp,
         fontWeight = FontWeight.Bold,
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(vertical = 16.dp),
+        fontFamily = pixelatedFont
     )
 }
 
