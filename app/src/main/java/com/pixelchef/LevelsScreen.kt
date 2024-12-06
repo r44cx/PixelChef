@@ -162,7 +162,7 @@ fun LevelInfo(levelNumber: Int, gameState: GameState, isUnlocked: Boolean) {
 @Composable
 fun StarsForRating(rating: Int) {
     val filledStarColor = colorResource(R.color.ratingStars)
-    val unfilledStarColor = colorResource(R.color.buttonGameBackground)
+    val unfilledStarColor = colorResource(R.color.ratingStarsBackground)
 
     val starText = buildAnnotatedString {
         append(" ")

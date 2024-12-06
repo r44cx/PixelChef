@@ -16,4 +16,5 @@
     <color name="colorSuccess">#388E3C</color>
     <color name="colorWarning">#FBC02D</color>
     <color name="ratingStars">#FF4D00</color>
+    <color name="ratingStarsBackground">#9E9E9E</color>
 </resources>
