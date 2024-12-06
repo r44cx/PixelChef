@@ -127,17 +127,17 @@ private fun RecipeImage(currentLevel: Level?, viewModel: GameViewModel) {
 private fun RecipeDetails(currentLevel: Level?, viewModel: GameViewModel) {
     Column(
         modifier = Modifier
-            .padding(vertical = 12.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = currentLevel?.name.orEmpty(),
-            fontSize = 20.sp,
+            fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
-            fontFamily = pixelatedFont
+            fontFamily = pixelatedFont,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(vertical = 12.dp)
         )
-        
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
@@ -252,12 +252,12 @@ fun IngredientItem(
                 .height(30.dp)
                 .width(150.dp)
                 .align(Alignment.BottomCenter)
-                .background(Color(0x70FFFFFF)), // Transparency
+                .background(Color(0xCCFFFFFF)), // Transparency
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = ingredient.name,
-                fontSize = 14.sp,
+                fontSize = 8.sp,
                 fontWeight = FontWeight.Bold,
                 color = colorResource(R.color.colorTextPrimary),
                 fontFamily = pixelatedFont
