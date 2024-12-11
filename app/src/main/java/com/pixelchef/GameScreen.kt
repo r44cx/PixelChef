@@ -52,6 +52,7 @@ import com.pixelchef.models.Level
 import com.pixelchef.ui.components.BackButton
 import com.pixelchef.ui.components.BackgroundImage
 import com.pixelchef.viewmodels.GameViewModel
+import com.pixelchef.ui.theme.pixelatedFont
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
@@ -126,21 +127,35 @@ private fun RecipeImage(currentLevel: Level?, viewModel: GameViewModel) {
 private fun RecipeDetails(currentLevel: Level?, viewModel: GameViewModel) {
     Column(
         modifier = Modifier
-            .padding(vertical = 16.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = currentLevel?.name.orEmpty(),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = "Correct: ${viewModel.getCorrectSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()} " +
-                    "Failure: ${viewModel.getWrongSelectedIngredientsCount()}/${GameConstants.MAX_WRONG_INGREDIENTS}",
             fontSize = 16.sp,
-            color = Color.Gray
+            fontWeight = FontWeight.Bold,
+            fontFamily = pixelatedFont,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(vertical = 12.dp)
         )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Correct: ${viewModel.getCorrectSelectedIngredientsCount()}/${viewModel.getTotalRequiredIngredients()}",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                fontFamily = pixelatedFont
+            )
+            Spacer(modifier = Modifier.width(24.dp))
+            Text(
+                text = "Wrong: ${viewModel.getWrongSelectedIngredientsCount()}/${GameConstants.MAX_WRONG_INGREDIENTS}",
+                fontSize = 12.sp,
+                color = Color.Gray,
+                fontFamily = pixelatedFont
+            )
+        }
     }
 }
 
@@ -217,8 +232,9 @@ fun IngredientItem(
                 ) {
                     Text(
                         text = ingredient.name.first().toString(),
-                        fontSize = 48.sp,
-                        fontWeight = FontWeight.Bold
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = pixelatedFont
                     )
                 }
             } else {
@@ -236,14 +252,15 @@ fun IngredientItem(
                 .height(30.dp)
                 .width(150.dp)
                 .align(Alignment.BottomCenter)
-                .background(Color(0x70FFFFFF)), // Transparency
+                .background(Color(0xCCFFFFFF)), // Transparency
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = ingredient.name,
-                fontSize = 14.sp,
+                fontSize = 8.sp,
                 fontWeight = FontWeight.Bold,
-                color = colorResource(R.color.colorTextPrimary)
+                color = colorResource(R.color.colorTextPrimary),
+                fontFamily = pixelatedFont
             )
         }
 
@@ -273,7 +290,7 @@ fun MessageOverlay(correct: Boolean, onDismiss: () -> Unit) {
     ) {
         Box(
             modifier = Modifier
-                .size(200.dp)
+                .size(280.dp)
                 .background(Color.White, RoundedCornerShape(16.dp))
                 .padding(16.dp),
             contentAlignment = Alignment.Center
@@ -291,7 +308,9 @@ fun MessageOverlay(correct: Boolean, onDismiss: () -> Unit) {
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    fontFamily = pixelatedFont,
+                    softWrap = false
                 )
             }
         }
@@ -367,7 +386,9 @@ fun DialogBox(
                 text = title,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                color = titleColor
+                color = titleColor,
+                fontFamily = pixelatedFont,
+                textAlign = TextAlign.Center
             )
             content()
         }
@@ -383,7 +404,10 @@ fun ActionButton(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
     ) {
-        Text(text)
+        Text(
+            text = text,
+            fontFamily = pixelatedFont
+        )
     }
 }
 

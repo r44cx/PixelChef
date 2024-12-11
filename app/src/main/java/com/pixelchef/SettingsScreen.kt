@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pixelchef.ui.components.BackButton
+import com.pixelchef.ui.components.BackgroundImage
+import com.pixelchef.ui.theme.pixelatedFont
 import com.pixelchef.viewmodels.GameViewModel
 
 @Composable
@@ -55,7 +57,8 @@ fun SettingsTitle() {
         text = "Settings",
         fontSize = 32.sp,
         fontWeight = FontWeight.Bold,
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(vertical = 16.dp),
+        fontFamily = pixelatedFont
     )
 }
 
@@ -81,7 +84,8 @@ fun ResetButton(onReset: () -> Unit) {
         Text(
             text = "Reset Game Progress",
             fontSize = 18.sp,
-            color = Color.White
+            color = Color.White,
+            fontFamily = pixelatedFont
         )
     }
 }
@@ -92,6 +96,7 @@ fun WarningText() {
         text = "Warning: This will reset all level progress and stars!",
         color = Color.Red,
         fontSize = 14.sp,
-        modifier = Modifier.padding(top = 8.dp)
+        modifier = Modifier.padding(top = 8.dp),
+        fontFamily = pixelatedFont
     )
 }

@@ -38,6 +38,7 @@ import com.pixelchef.models.GameState
 import com.pixelchef.models.Level
 import com.pixelchef.ui.components.BackButton
 import com.pixelchef.ui.components.BackgroundImage
+import com.pixelchef.ui.theme.pixelatedFont
 import com.pixelchef.viewmodels.GameViewModel
 
 @Composable
@@ -72,7 +73,8 @@ fun TitleText(title: String) {
         text = title,
         fontSize = 32.sp,
         fontWeight = FontWeight.Bold,
-        modifier = Modifier.padding(vertical = 16.dp)
+        modifier = Modifier.padding(vertical = 16.dp),
+        fontFamily = pixelatedFont
     )
 }
 
@@ -140,14 +142,16 @@ fun LevelInfo(levelNumber: Int, gameState: GameState, isUnlocked: Boolean) {
             text = levelNumber.toString(),
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
-            color = colorResource(if (isUnlocked) R.color.colorTextPrimary else R.color.colorTextSecondary)
+            color = colorResource(if (isUnlocked) R.color.colorTextPrimary else R.color.colorTextSecondary),
+            fontFamily = pixelatedFont
         )
         Spacer(modifier = Modifier.height(4.dp))
         if (!isUnlocked) {
             Text(
                 text = "Locked",
                 fontSize = 14.sp,
-                color = colorResource(R.color.colorTextSecondary)
+                color = colorResource(R.color.colorTextSecondary),
+                fontFamily = pixelatedFont
             )
         } else {
             StarsForRating(gameState.rating)
@@ -158,7 +162,7 @@ fun LevelInfo(levelNumber: Int, gameState: GameState, isUnlocked: Boolean) {
 @Composable
 fun StarsForRating(rating: Int) {
     val filledStarColor = colorResource(R.color.ratingStars)
-    val unfilledStarColor = colorResource(R.color.buttonGameBackground)
+    val unfilledStarColor = colorResource(R.color.ratingStarsBackground)
 
     val starText = buildAnnotatedString {
         append(" ")

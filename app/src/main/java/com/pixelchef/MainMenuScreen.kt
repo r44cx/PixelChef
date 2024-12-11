@@ -22,6 +22,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pixelchef.ui.components.BackgroundImage
+import com.pixelchef.ui.theme.pixelatedFont
+import com.pixelchef.ui.components.PixelatedButton
 
 @Composable
 fun MainMenuScreen(onNavigate: (String) -> Unit) {
@@ -50,7 +52,8 @@ fun MainMenuContent(onNavigate: (String) -> Unit) {
 fun TitleText() {
     Text(
         text = "PixelChef",
-        fontSize = 48.sp
+        fontSize = 32.sp,
+        fontFamily = pixelatedFont
     )
 }
 
@@ -83,19 +86,9 @@ fun MenuButtons(onNavigate: (String) -> Unit) {
 
 @Composable
 fun MainButton(text: String, navigateTo: String, onNavigate: (String) -> Unit) {
-    Button(
+    PixelatedButton(
+        text = text,
         onClick = { onNavigate(navigateTo) },
-        shape = RectangleShape,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 30.dp)
-            .height(50.dp),
-        colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
-    ) {
-        Text(
-            text = text,
-            color = colorResource(R.color.colorTextSecondary),
-            fontSize = 20.sp
-        )
-    }
+        modifier = Modifier.padding(horizontal = 30.dp)
+    )
 }

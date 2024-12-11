@@ -1,21 +1,25 @@
 package com.pixelchef.ui.components
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.pixelchef.R
 
 @Composable
 fun BackButton(onBack: () -> Unit) {
-    Button(
+    PixelatedButton(
+        text = "< Back",
         onClick = onBack,
-        shape = RectangleShape,
-        colors = ButtonDefaults.buttonColors(colorResource(R.color.buttonBackground))
-    ) {
-        Text("< Back", fontSize = 14.sp, color = colorResource(R.color.colorTextSecondary))
-    }
+        modifier = Modifier
+            .width(100.dp)
+            .height(50.dp)
+            .padding(vertical = 6.dp)
+        ,
+        contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp),
+        fontSize = 12
+    )
 }
